@@ -1,9 +1,23 @@
-
-.navbar-container{
+.navbar-container {
   height: 80px;
   display: flex;
+  justify-content: space-between;
 }
-.logo{
+
+.logo {
   height: 80px;
   width: 80px;
+}
+
+.content-wrapper {
+  display: flex;
+  justify-content: space-around;
+  width: 40%;
+  align-items: center;
+}
+
+
+.sign-in {
+  height: 36px;
+  width: 83px;
 }
