@@ -1,0 +1,35 @@
+.navbar-container {
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  background-color: #030303;
+
+}
+
+.logo {
+  height: 80px;
+  width: 80px;
+}
+
+.content-wrapper {
+  display: flex;
+  justify-content: space-around;
+  width: 35%;
+  align-items: center;
+  color: #FFFFFF;
+
+  div {
+    cursor: pointer;
+  }
+}
+
+
+.sign-in {
+  height: 36px;
+  width: 83px;
+  background-color: #313EF7;
+  border: none;
+  border-radius: 36px;
+  color: #FFFFFF;
+  cursor: pointer;
+}
