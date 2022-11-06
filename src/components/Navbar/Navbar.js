@@ -3,7 +3,9 @@ import "./Navbar.scss"
 export default function Navbar() {
   return (
     <div className='navbar-container'>
-      <img className='logo' src={require('/Users/hongseoupyun/Desktop/hongseoup/sideProjects/compcar-ui/src/assets/logo.png')} alt="logo" />
+      <div className='img-wrapper'> 
+        <img className='logo' src={require('/Users/hongseoupyun/Desktop/hongseoup/sideProjects/compcar-ui/src/assets/logo.png')} alt="logo" />
+      </div>
       <div className='content-wrapper'>
         <div className='find-a-car'>
           Find a car

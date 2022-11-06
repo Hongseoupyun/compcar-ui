@@ -1,11 +1,14 @@
 .navbar-container {
-  height: 80px;
+  height: 12vh;
   display: flex;
   justify-content: space-between;
-  background-color: #030303;
+  background-color: #1A122B;
 
 }
-
+.img-wrapper{
+  display: flex;
+  align-items: center;
+}
 .logo {
   height: 80px;
   width: 80px;
