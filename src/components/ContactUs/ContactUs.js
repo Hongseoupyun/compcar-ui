@@ -1,19 +1,19 @@
 import React from 'react'
-
+import "./ContactUs.scss"
 export default function ContactUs() {
   return (
-    <div>
+    <div className='contact-us'>
       <div className='meet-our-team'>
-
+        MEET OUR TEAM
       </div>
       <div className='members-img-container'>
-        <img alt='sehwan'>
+        <img id='contact-us-img' alt='sehwan' src={require('/Users/hongseoupyun/Desktop/hongseoup/sideProjects/compcar-ui/src/assets/Sehwan.jpg')}>
         </img>
-        <img alt='anna'>
+        <img id='contact-us-img' alt='anna' src={require('/Users/hongseoupyun/Desktop/hongseoup/sideProjects/compcar-ui/src/assets/anna.jpg')}>
         </img>
-        <img alt='hongseoup'>
+        <img id='contact-us-img' alt='hongseoup' src={require('/Users/hongseoupyun/Desktop/hongseoup/sideProjects/compcar-ui/src/assets/simon.jpg')}>
         </img>
-        <img alt='jay'>
+        <img id='contact-us-img' alt='jay' src={require('/Users/hongseoupyun/Desktop/hongseoup/sideProjects/compcar-ui/src/assets/Jay.jpg')}>
         </img>
       </div>
       <button className='contact-button'>

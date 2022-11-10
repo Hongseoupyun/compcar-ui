@@ -1,0 +1,23 @@
+.contact-us {
+  display: flex;
+  flex-direction: column;
+  height: 73vh;
+  background-color: #F1F2F8;
+  align-items: center;
+  justify-content: space-around;
+}
+.contact-button{
+  background-color: #484154;
+  color: white;
+  border: none;
+  border-radius: 24px;
+}
+.members-img-container{
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+}
+#contact-us-img{
+  height: 17vh;
+  width: 17vw;
+}
