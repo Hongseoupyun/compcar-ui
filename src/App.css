@@ -1,0 +1,57 @@
+.App {
+    text-align: center;
+  }
+
+.title{
+    height: 100px;
+    padding: 0%;
+  }
+  
+  .sub-title{
+    position: absolute;
+    left: 5px;
+    text-align: left;
+    margin-left: 280px;
+    margin-top: 10px;
+  }
+  
+  .sub-explain{
+    position: absolute;
+    left: 285px;
+    line-height: 45px;
+    margin-top: 45px;
+  }
+  
+  .more-option{
+    position: absolute;
+    right: 300px;
+    line-height: 35px;
+    margin-top: 50px;
+    color: rgb(7, 112, 229);
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .more-option:hover{
+    color: rgb(8, 78, 184);
+  }
+  
+  .more-option::after{
+    content:'';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    left:0;
+    bottom:0px;
+    color: rgb(8, 78, 184);
+    background-color: rgb(8, 78, 184);
+  }
+  
+  .more-option:hover::after{
+    color: rgb(8, 78, 184);
+    background-color: rgb(8, 78, 184);
+    width:100%;
+    transition: all 0.5s ease-in-out;
+  }
+  
+  
