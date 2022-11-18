@@ -1,7 +1,6 @@
-
 .title{
     height: 100px;
-    padding: 0%;
+    padding-top: 10px;
   }
   
   .sub-title{
@@ -25,6 +24,7 @@
     line-height: 35px;
     margin-top: 50px;
     color: rgb(7, 112, 229);
+    padding-top: 16px;
     font-weight: bold;
     cursor: pointer;
   }
