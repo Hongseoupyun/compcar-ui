@@ -11,6 +11,7 @@ function App() {
   return (
     <div className="App">
       <Navbar/>
+      <p>hello</p>
       <div className="title">
         <h2 className="sub-title">The best deals</h2>
         <div className="sub-explain">Buy the car with the best deal we’ve found this week. </div>

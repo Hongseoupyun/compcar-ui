@@ -4,7 +4,7 @@ export default function Navbar() {
   return (
     <div className='navbar-container'>
       <div className='img-wrapper'> 
-        <img className='logo' src={require('/Users/hongseoupyun/Desktop/hongseoup/sideProjects/compcar-ui/src/assets/logo.png')} alt="logo" />
+        <img className='logo' alt="logo" />
       </div>
       <div className='content-wrapper'>
         <div className='find-a-car'>
