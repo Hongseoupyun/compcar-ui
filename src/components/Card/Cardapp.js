@@ -1,7 +1,7 @@
 import './Cardapp.css';
 import Card from './Card';
 import PopularCard from './PopularCard';
-import Button from './Button';
+//import Button from './Button';
 import data from './data';
 import cityData from './cityData';
 
@@ -26,7 +26,7 @@ function Cardapp(){
             </div>   
             <div className ="title">
                 <h2 className="sub-title">Most Popular Cars in Canada</h2>
-                <Button/>
+                
                 <div className="more-option">View more cities</div>
             </div>
             <div className="deal">
