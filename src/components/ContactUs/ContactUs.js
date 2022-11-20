@@ -1,5 +1,5 @@
 import React from "react";
-import Footer from "components/Footer/Footer.js";
+import Footer from "components/Footer/Footer";
 import "./ContactUs.scss";
 export default function ContactUs() {
   return (
@@ -11,7 +11,7 @@ export default function ContactUs() {
             <img
               id="contact-us-img"
               alt="sehwan"
-              src={require("/Users/hongseoupyun/Desktop/hongseoup/sideProjects/compcar-ui/src/assets/Sehwan.jpg")}
+              src={require("assets/Sehwan.jpg")}
             />
             <div className="name">
               <b>Sehwan Oh</b>
@@ -24,7 +24,7 @@ export default function ContactUs() {
             <img
               id="contact-us-img"
               alt="anna"
-              src={require("/Users/hongseoupyun/Desktop/hongseoup/sideProjects/compcar-ui/src/assets/anna.jpg")}
+              src={require("assets/anna.jpg")}
             />
             <div className="name">
               <b>Anna Shin</b>
@@ -37,7 +37,7 @@ export default function ContactUs() {
             <img
               id="contact-us-img"
               alt="hongseoup"
-              src={require("/Users/hongseoupyun/Desktop/hongseoup/sideProjects/compcar-ui/src/assets/simon.jpg")}
+              src={require("assets/simon.jpg")}
             />
             <div className="name">
               <b>Simon Yun</b>
@@ -50,7 +50,7 @@ export default function ContactUs() {
             <img
               id="contact-us-img"
               alt="jay"
-              src={require("/Users/hongseoupyun/Desktop/hongseoup/sideProjects/compcar-ui/src/assets/Jay.jpg")}
+              src={require("assets/Jay.jpg")}
             />
             <div className="name">
               <b>Jay Choi</b>
