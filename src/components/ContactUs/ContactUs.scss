@@ -2,15 +2,15 @@
   display: flex;
   flex-direction: column;
   height: 81vh;
-  background-color: #F1F2F8;
+  background-color: #f1f2f8;
   align-items: center;
   justify-content: space-around;
-  .meet-our-team{
+  .meet-our-team {
     color: #000000;
     font-size: 2.5rem;
   }
 }
-.contact-button{
+.contact-button {
   background-color: #484154;
   color: white;
   border: none;
@@ -19,18 +19,34 @@
   height: 3rem;
   font-size: 1rem;
 }
-.members-img-container{
+.members-img-container {
   display: flex;
   width: 100%;
   justify-content: space-evenly;
-  .members-img-wrapper{
+  .members-img-wrapper {
     display: flex;
     flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 32px 64px rgb(8 38 44 / 5%), 0 16px 32px rgb(8 38 44 / 20%);
+    height: 20vw;
+    width: 20vw;
+    min-height: 280px;
+    min-height: 2;
+    min-width: 180px;
+    .img-cards {
+      display: flex;
+      height: 95%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-evenly;
+    }
+    #contact-us-img {
+      height: 140px;
+      width: 140px;
+      border-radius: 999px;
+    }
   }
-}
-#contact-us-img{
-  height: 40vh;
-  width: 23vw;
-  border-radius: 1.5rem;
-  padding-bottom: 1rem;
 }
