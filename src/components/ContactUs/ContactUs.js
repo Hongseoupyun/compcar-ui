@@ -4,10 +4,10 @@ import "./ContactUs.scss";
 export default function ContactUs() {
   return (
     <>
-      <div className="contact-us">
+      <div className="contact-us" data-testid = "contact-us-page">
         <div className="meet-our-team">MEET OUR TEAM</div>
         <div className="members-img-container">
-          <div className="members-img-wrapper">
+          <div className="members-img-wrapper" data-testid = "img-container">
             <img
               id="contact-us-img"
               alt="sehwan"

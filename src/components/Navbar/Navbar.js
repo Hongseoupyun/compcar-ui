@@ -2,7 +2,7 @@ import React from "react";
 import "./Navbar.scss";
 export default function Navbar() {
   return (
-    <div className="navbar-container">
+    <div className="navbar-container" data-testid = "navbar-div">
       <div className="img-wrapper">
         <img className="logo" src={require("assets/logo.png")} alt="logo" />
       </div>
