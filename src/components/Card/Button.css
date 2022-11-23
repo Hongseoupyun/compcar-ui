@@ -1,0 +1,122 @@
+/*.btn{
+	left: 285px;
+	padding-top: 55px;
+    position: absolute;
+}
+
+.Toronto{
+    border:1px solid rgb(7, 112, 229);
+    background-color: rgb(7, 112, 229);
+	width: 130px;
+    color: white;
+    background:ffffff;
+	border-radius:28px;
+	display:inline-block;
+	cursor:pointer;
+	font-family:Arial;
+	font-size:15px;
+	padding:8px 31px;
+	text-decoration:none;
+    margin-right: 10px;
+	cursor: pointer;
+}
+
+.Toronto:hover {
+	color: white;
+    border:1px solid rgb(8, 78, 184);;
+    background-color: rgb(8, 78, 184);
+}
+
+.Toronto:active {
+	position:relative;
+	top:1px;
+}
+
+.Vancouver{
+	background-color:#ffffff;
+	border-radius:28px;
+	width: 130px;
+	border:1px solid #000000;
+	display:inline-block;
+	cursor:pointer;
+	color:#000000;
+	font-family:Arial;
+	font-size:15px;
+	padding:8px 31px;
+	text-decoration:none;
+    margin-right: 10px;
+}
+
+.Vancouver:hover {
+	color: black;
+    border:1px solid black;
+    background-color: rgb(241, 242, 248);
+}
+
+
+.Montreal{
+    background:ffffff;
+	background-color:#ffffff;
+	width: 130px;
+	border-radius:28px;
+	border:1px solid #000000;
+	display:inline-block;
+	cursor:pointer;
+	color:#000000;
+	font-family:Arial;
+	font-size:15px;
+	padding:8px 31px;
+	text-decoration:none;
+    margin-right: 10px;
+}
+
+.Montreal:hover {
+	color: black;
+    border:1px solid black;
+    background-color: rgb(241, 242, 248);
+}
+
+.Calgary{
+    background:ffffff;
+	background-color:#ffffff;
+	width: 130px;
+	border-radius:28px;
+	border:1px solid #000000;
+	display:inline-block;
+	cursor:pointer;
+	color:#000000;
+	font-family:Arial;
+	font-size:15px;
+	padding:8px 31px;
+	text-decoration:none;
+    margin-right: 10px;
+}
+
+.Calgary:hover {
+	color: black;
+    border:1px solid black;
+    background-color: rgb(241, 242, 248);
+}
+
+.Winnipeg{
+    background:ffffff;
+	background-color:#ffffff;
+	width: 140px;
+	border-radius:28px;
+	border:1px solid #000000;
+	display:inline-block;
+	cursor:pointer;
+	color:#000000;
+	font-family:Arial;
+	font-size:15px;
+	padding:8px 31px;
+	text-decoration:none;
+    margin-right: 10px;
+}
+
+.Winnipeg:hover {
+	color: black;
+    border:1px solid black;
+    background-color: rgb(241, 242, 248);
+}
+*/
