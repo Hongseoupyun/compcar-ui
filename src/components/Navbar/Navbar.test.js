@@ -12,5 +12,9 @@ describe("Navbar", () => {
     const logo = screen.getByAltText("logo");
     expect(logo).toBeInTheDocument;
   })
-  
+  it("has 4 contents",()=>{
+    render(<Navbar />);
+    const contents = screen.getAllByTestId("content");
+    expect(contents).toHaveLength(4);
+  })
 });

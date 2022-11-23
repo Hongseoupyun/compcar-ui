@@ -12,6 +12,7 @@ describe("ContactUs", () => {
     const teamImg = screen.getAllByRole("img");
     expect(teamImg.length).toBe(4);
   });
+ 
   // it("modal pops up when button is clicked",()=>{
 
   // })
