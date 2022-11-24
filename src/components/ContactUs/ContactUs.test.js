@@ -12,7 +12,13 @@ describe("ContactUs", () => {
     const teamImg = screen.getAllByRole("img");
     expect(teamImg.length).toBe(4);
   });
- 
+
+  it("has 4 img cards", () => {
+    render(<ContactUs />);
+    const imgContainer = screen.getByTestId("img-container");
+    expect(imgContainer.children).toHaveLength(4);
+  });
+
   // it("modal pops up when button is clicked",()=>{
 
   // })

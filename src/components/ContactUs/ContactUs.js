@@ -6,8 +6,8 @@ export default function ContactUs() {
     <>
       <div className="contact-us" data-testid="contact-us-page">
         <div className="meet-our-team">MEET OUR TEAM</div>
-        <div className="members-img-container">
-          <div className="members-img-wrapper" data-testid="img-container">
+        <div className="members-img-container" data-testid="img-container">
+          <div className="members-img-wrapper">
             <div className="img-cards">
               <img
                 id="contact-us-img"
