@@ -1,6 +1,14 @@
 .section--search {
-  h1{
+  .container--input {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  h1 {
     color: white;
+    text-align: left;
   }
   height: 90vh;
   width: 100vw;
@@ -8,18 +16,53 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  .searchbar--wrapper{
-    background-color: #1A122B;
-    color: white;
-    width: 50rem;
-    height: 30rem;
-    border-radius: 20px;
-    .container--search--tap{
+  .container--search--tap {
+    display: flex;
+    .tap--search {
+      width: 16vw;
+      height: 6vh;
+      background-color: #1a122b;
+      color: white;
+      border: none;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
       display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
     }
-    select{
-      border-radius: 7px;
+    #compare {
+      width: 25vw;
+      height: 6vh;
+      background-color: #484154;
     }
   }
-  }
+  .searchbar--wrapper {
+    background-color: #1a122b;
+    color: white;
+    width: 85vw;
+    height: 17vh;
+    padding-right: 10px;
+    padding-left: 10px;
+    border-radius: 15px;
 
+    select {
+      border-radius: 12px;
+      border: none;
+      width: 16%;
+      height: 2rem;
+      margin-right: 1rem;
+    }
+    .button--search {
+      background-color: #196e86;
+      color: white;
+      border-radius: 7px;
+      border: none;
+      width: 3.5rem;
+      height: 3.5rem;
+      #emoji {
+        font-size: 1.9rem;
+      }
+    }
+  }
+}
