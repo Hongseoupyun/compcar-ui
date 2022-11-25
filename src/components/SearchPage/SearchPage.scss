@@ -1,0 +1,25 @@
+.section--search {
+  h1{
+    color: white;
+  }
+  height: 90vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .searchbar--wrapper{
+    background-color: #1A122B;
+    color: white;
+    width: 50rem;
+    height: 30rem;
+    border-radius: 20px;
+    .container--search--tap{
+      display: flex;
+    }
+    select{
+      border-radius: 7px;
+    }
+  }
+  }
+
