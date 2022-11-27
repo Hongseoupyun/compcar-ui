@@ -18,7 +18,7 @@ export default function SearchPage() {
       </div>
       <div className="searchbar--wrapper">
         <form className="container--input">
-          <select className="searchbar--select">
+          <select className="searchbar--select" >
             <option value="all">Make:All</option>
           </select>
           <select className="searchbar--select">

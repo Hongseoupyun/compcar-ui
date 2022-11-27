@@ -8,6 +8,8 @@
   }
   h1 {
     color: white;
+    text-align:left;
+    width: 84vw;
   }
   height: 90vh;
   width: 100vw;
@@ -17,6 +19,7 @@
   align-items: center;
   .container--search--tap {
     display: flex;
+    width: 85vw;
     .tap--search {
       width: 16vw;
       height: 6vh;
@@ -33,6 +36,7 @@
       width: 25vw;
       height: 6vh;
       background-color: #484154;
+      margin-left: 10px;
     }
   }
   .searchbar--wrapper {
@@ -40,9 +44,9 @@
     color: white;
     width: 85vw;
     height: 17vh;
-    padding-right: 10px;
-    padding-left: 10px;
-    border-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
 
     select {
       border-radius: 12px;
@@ -50,6 +54,10 @@
       width: 16%;
       height: 2rem;
       margin-right: 1rem;
+      text-align: left;
+      option{
+        text-align: left;
+      }
     }
     .button--search {
       background-color: #196e86;
