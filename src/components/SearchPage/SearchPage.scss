@@ -1,4 +1,5 @@
 .section--search {
+  background-size: 100vw 90vh;
   .container--input {
     width: 100%;
     display: flex;
@@ -27,8 +28,8 @@
       background-color: #1a122b;
       color: white;
       border: none;
-      border-top-left-radius: 10px;
-      border-top-right-radius: 10px;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -63,7 +64,7 @@
     .button--search {
       background-color: #196e86;
       color: white;
-      border-radius: 7px;
+      border-radius: 15px;
       border: none;
       width: 3.5rem;
       height: 3.5rem;
