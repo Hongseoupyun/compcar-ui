@@ -2,10 +2,20 @@ import "./CardApp.css";
 import Card from "./Card";
 import PopularCard from "./PopularCard";
 //import Button from './Button';
-import data from "./data";
+//import data from "./data";
 import cityData from "./cityData";
+import { useState, useEffect } from "react";
 
-function Cardapp() {
+function CardApp() {
+  const[recCard, setRecCard] = useState([]);
+
+  useEffect(()=>{
+    fetch('http://localhost:8000/api/kijijiCar')
+    .then((response)=>response.json())
+    .then((data)=>console.log(data))
+    .then((data)=>setRecCard(data));
+  }, []);
+
   return (
     <div className="cardApp">
       <div className="title">
@@ -16,13 +26,13 @@ function Cardapp() {
         <div className="more-option">see more deals</div>
       </div>
       <div className="deal">
-        {data.map((data) => (
+        {recCard.map((recData) => (
           <Card
-            image={data.image}
-            brand={data.brand}
-            model={data.model}
-            price={data.price}
-            mileage={data.mileage}
+            image={recData.image}
+            brand={recData.brand}
+            model={recData.model}
+            price={recData.price}
+            mileage={recData.mileage}
           />
         ))}
       </div>
@@ -46,4 +56,4 @@ function Cardapp() {
   );
 }
 
-export default Cardapp;
+export default CardApp;
