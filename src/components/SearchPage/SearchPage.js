@@ -51,44 +51,68 @@ export default function SearchPage() {
       </div>
       <div className="searchbar--wrapper">
         <form className="container--input">
-          <div id="input1">
-            <select className="searchbar--select">
-              <option value="all">Make:All</option>
-            </select>
-            <select className="searchbar--select">
-              <option value="all">Model:All</option>
-            </select>
-            <select className="searchbar--select">
-              <option value="all">Year:All</option>
-            </select>
-            <select className="searchbar--select">
-              <option value="all">Color:All</option>
-            </select>
-            <select className="searchbar--select">
-              <option value="all">Mileage:All</option>
-            </select>
-          </div>
-          <div id="input2">
-            <select className="searchbar--select">
-              <option value="all">Make:All</option>
-            </select>
-            <select className="searchbar--select">
-              <option value="all">Model:All</option>
-            </select>
-            <select className="searchbar--select">
-              <option value="all">Year:All</option>
-            </select>
-            <select className="searchbar--select">
-              <option value="all">Color:All</option>
-            </select>
-            <select className="searchbar--select">
-              <option value="all">Mileage:All</option>
-            </select>
-          </div>
-          <button className="button--search" type="submit">
-            <FaSearch id="emoji" />
-          </button>
+          {selected === "noraml" ? (
+            <div id="input1">
+              <select className="searchbar--select">
+                <option value="all">Make:All</option>
+              </select>
+              <select className="searchbar--select">
+                <option value="all">Model:All</option>
+              </select>
+              <select className="searchbar--select">
+                <option value="all">Year:All</option>
+              </select>
+              <select className="searchbar--select">
+                <option value="all">Color:All</option>
+              </select>
+              <select className="searchbar--select">
+                <option value="all">Mileage:All</option>
+              </select>
+            </div>
+          ) : (
+            <>
+              <div id="input1">
+                <select className="searchbar--select">
+                  <option value="all">Make:All</option>
+                </select>
+                <select className="searchbar--select">
+                  <option value="all">Model:All</option>
+                </select>
+                <select className="searchbar--select">
+                  <option value="all">Year:All</option>
+                </select>
+                <select className="searchbar--select">
+                  <option value="all">Color:All</option>
+                </select>
+                <select className="searchbar--select">
+                  <option value="all">Mileage:All</option>
+                </select>
+              </div>
+              <div id="input2">
+                <select className="searchbar--select">
+                  <option value="all">Make:All</option>
+                </select>
+                <select className="searchbar--select">
+                  <option value="all">Model:All</option>
+                </select>
+                <select className="searchbar--select">
+                  <option value="all">Year:All</option>
+                </select>
+                <select className="searchbar--select">
+                  <option value="all">Color:All</option>
+                </select>
+                <select className="searchbar--select">
+                  <option value="all">Mileage:All</option>
+                </select>
+              </div>
+            </>
+          )}
         </form>
+        <div className="button--wrapper">
+        <button className="button--search" type="submit">
+          <FaSearch id="emoji" />
+        </button>
+        </div>
       </div>
     </section>
   );
