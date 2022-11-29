@@ -1,3 +1,8 @@
 *{
   text-align: center;
 }
+:root{
+  --primary:#1a122b;
+  --secondary: #484154;
+  --highlight:#313EF7;
+}
