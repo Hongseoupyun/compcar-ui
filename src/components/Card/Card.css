@@ -1,43 +1,43 @@
-.contentsCard{
-    background-color: white;
-    font-size: 15px;
-    line-height: 20px;
-    display: inline-table;
-    width: 300px;
-    height: 400px;
-    margin: 30px;
-    border: solid 2px rgb(255, 255, 255);
-    border-radius: 15px;
-    box-shadow: 0 10px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    cursor: pointer;
-    padding-top: 10px;
+.contentsCard {
+  background-color: white;
+  font-size: 15px;
+  line-height: 20px;
+  display: inline-table;
+  width: 300px;
+  height: 400px;
+  margin: 30px;
+  border: solid 2px rgb(255, 255, 255);
+  border-radius: 15px;
+  box-shadow: 0 10px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  cursor: pointer;
+  padding-top: 10px;
 }
 
-.carCard{
-    position: relative;
-    background-color: var(--color-grey-primary);
-    margin: 0.5rem;
-    flex: 1 0 25 rem;
-    max-width: 30rem;
-    max-height: 50rem;
-    transition: 0.2s;
+.carCard {
+  position: relative;
+  background-color: var(--color-grey-primary);
+  margin: 0.5rem;
+  flex: 1 0 25 rem;
+  max-width: 30rem;
+  max-height: 50rem;
+  transition: 0.2s;
 }
 
-.carImage{
-    margin-top: 2rem;
-    width: 250px;
-    height: 150px;
+.carImage {
+  margin-top: 2rem;
+  width: 250px;
+  height: 150px;
 }
 
-.carCard_content{
-    margin: 2rem;
+.carCard_content {
+  margin: 2rem;
 }
 
-.carBrand{
-    font-size: 1.2 rem;
+.carBrand {
+  font-size: 1.2 rem;
 }
 
-.carInfo{
-    line-height: 25px;
-    text-align: left;
+.carInfo {
+  line-height: 25px;
+  text-align: left;
 }

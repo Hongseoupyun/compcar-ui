@@ -1,7 +1,7 @@
 import './App.css';
 import ContactUs from './components/ContactUs/ContactUs';
 import Navbar from './components/Navbar/Navbar';
-import Cardapp from './components/Card/Cardapp';
+import Cardapp from './components/Card/CardApp';
 
 function App() {
   return (
