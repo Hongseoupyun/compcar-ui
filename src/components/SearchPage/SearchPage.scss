@@ -14,7 +14,6 @@
       display: flex;
       justify-content: center;
       align-items: center;
-
     }
 
     #input2 {
@@ -92,6 +91,9 @@
     .button--wrapper {
       display: flex;
       align-items: center;
+      button {
+        cursor: pointer;
+      }
     }
 
     .button--search {
