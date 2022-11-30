@@ -6,18 +6,7 @@ import SearchInputBar from "components/SearchPage/SearchInputBar";
 
 export default function SearchPage() {
   const [selected, setSelected] = useState("noraml");
-  const [searchInput, setSearchInput] = useState({
-    make1: "",
-    make2: "",
-    model1: "",
-    moderl2: "",
-    year1: "",
-    year2: "",
-    color1: "",
-    color2: "",
-    mileage1: "",
-    mileage2: "",
-  });
+  
 
   const handleSelected = () => {
     selected === "noraml" ? setSelected("compare") : setSelected("noraml");
