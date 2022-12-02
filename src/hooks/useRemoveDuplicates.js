@@ -1,4 +1,4 @@
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 export function useRemoveDuplicates(category) {
@@ -14,6 +14,19 @@ export function useRemoveDuplicates(category) {
         return car[category];
       });
       const filteredCategories = removeDuplicate(carArr);
+
+      if (
+        category === "maker" ||
+        category === "model" ||
+        category === "color"
+      ) {
+        setCategories(filteredCategories.sort());
+      } else if (category === "madeYear") {
+        setCategories(filteredCategories.sort((a, b) => b - a));
+      } else if (category === "mileage") {
+        setCategories(filteredCategories.sort((a, b) => a - b));
+      }
+
       setCategories(filteredCategories);
       console.log(filteredCategories);
     } catch (error) {
