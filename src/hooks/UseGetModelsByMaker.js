@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-export default function useGetModelsByMaker(maker) {
+export default function UseGetModelsByMaker(maker) {
   const baseURL = "http://localhost:8000/api";
   const [models, setModel] = useState([]);
   const removeDuplicate = function (arr) {
@@ -10,7 +10,7 @@ export default function useGetModelsByMaker(maker) {
   const getModelsByMaker = async function (maker) {
     try {
       const response = await axios.get(`${baseURL}/car/makers/${maker}`);
-      const modelArr = response?.data
+      const modelArr = response.data
         .map((car) => {
           return car.model;
         })

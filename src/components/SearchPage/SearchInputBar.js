@@ -1,7 +1,8 @@
 import React from "react";
-import { useEffect, useState } from "react";
-import { useRemoveDuplicates } from "hooks/UseRemoveDuplicates";
+import { useState } from "react";
+import { UseRemoveDuplicates } from "hooks/UseRemoveDuplicates";
 import UseGetModelsByMaker from "hooks/UseGetModelsByMaker";
+import UseGetYearsByModel from "hooks/UseGetYearsByModel";
 
 export default function SearchInputBar(props) {
   const { selected } = props;
@@ -14,14 +15,16 @@ export default function SearchInputBar(props) {
   const [year2, setYear2] = useState("");
   const [color1, setColor1] = useState("");
   const [color2, setColor2] = useState("");
-  const [mileage1, setMileage1] = useState("");
-  const [mileage2, setMileage2] = useState("");
-  const makers = useRemoveDuplicates("maker");
-  const madeYears = useRemoveDuplicates("madeYear");
-  const mileages = useRemoveDuplicates("mileage");
-  const colors = useRemoveDuplicates("color");
+  const [mileage1, setMileage1] = useState([]);
+  const [mileage2, setMileage2] = useState([]);
+  const makers = UseRemoveDuplicates("maker");
+  const madeYears = UseRemoveDuplicates("madeYear");
+  const mileages = UseRemoveDuplicates("mileage");
+  const colors = UseRemoveDuplicates("color");
   let modelsByMaker1 = UseGetModelsByMaker(maker1);
   let modelsByMaker2 = UseGetModelsByMaker(maker2);
+  let yearsByModels1 = UseGetYearsByModel(model1);
+  let yearsByModels2 = UseGetYearsByModel(model2);
 
   //function returns the options for the select tag
   const showOptions = function (categories) {
@@ -79,8 +82,25 @@ export default function SearchInputBar(props) {
         );
       });
     }
+    if (categories === "year1") {
+      return yearsByModels1.map((year) => {
+        return (
+          <option key={year} value={year}>
+            Year:{year}
+          </option>
+        );
+      });
+    }
+    if (categories === "year2") {
+      return yearsByModels2.map((year) => {
+        return (
+          <option key={year} value={year}>
+            Year:{year}
+          </option>
+        );
+      });
+    }
   };
-  console.log("maker1=>", maker1);
 
   return (
     <>
@@ -94,7 +114,12 @@ export default function SearchInputBar(props) {
           >
             {showOptions("maker1")}
           </select>
-          <select className="searchbar--select">
+          <select
+            className="searchbar--select"
+            onChange={(e) => {
+              setModel1(e.target.value);
+            }}
+          >
             <option key="all" value="all">
               Model:All
             </option>
@@ -102,6 +127,7 @@ export default function SearchInputBar(props) {
           </select>
           <select className="searchbar--select">
             <option value="all">Year:All</option>
+            {showOptions("year1")}
           </select>
           <select
             className="searchbar--select"
@@ -134,6 +160,7 @@ export default function SearchInputBar(props) {
             </select>
             <select className="searchbar--select">
               <option value="all">Year:All</option>
+              {showOptions("year1")}
             </select>
             <select
               className="searchbar--select"
@@ -164,6 +191,7 @@ export default function SearchInputBar(props) {
             </select>
             <select className="searchbar--select">
               <option value="all">Year:All</option>
+              {showOptions("year2")}
             </select>
             <select
               className="searchbar--select"

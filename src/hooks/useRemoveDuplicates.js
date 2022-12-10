@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-export function useRemoveDuplicates(category) {
+export function UseRemoveDuplicates(category) {
   const baseURL = "http://localhost:8000/api";
   const [categories, setCategories] = useState([]);
   const removeDuplicate = function (arr) {
