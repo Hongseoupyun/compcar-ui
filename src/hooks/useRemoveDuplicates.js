@@ -7,6 +7,7 @@ export function useRemoveDuplicates(category) {
   const removeDuplicate = function (arr) {
     return [...new Set(arr)];
   };
+
   const getCarDatasByCategories = async function (category) {
     try {
       const response = await axios.get(`${baseURL}/car`);
@@ -26,9 +27,8 @@ export function useRemoveDuplicates(category) {
       } else if (category === "mileage") {
         setCategories(filteredCategories.sort((a, b) => a - b));
       }
-
-      setCategories(filteredCategories);
-      console.log(filteredCategories);
+      filteredCategories.unshift("All");
+      setCategories(filteredCategories.filter((item) => item !== ""));
     } catch (error) {
       console.log(error);
     }
