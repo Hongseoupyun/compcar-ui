@@ -4,6 +4,7 @@ import UseGetMakers from "hooks/UseGetMakers";
 import UseGetModelsByMaker from "hooks/UseGetModelsByMaker";
 import UseGetYearsByModel from "hooks/UseGetYearsByModel";
 import UseGetColorsByModel from "hooks/UseGetColorsByModel";
+import ShowOptions from "components/SearchPage/ShowOptions";
 
 export default function SearchInputBar(props) {
   const { selected } = props;
@@ -26,80 +27,6 @@ export default function SearchInputBar(props) {
   let colorsByModels1 = UseGetColorsByModel(model1);
   let colorsByModels2 = UseGetColorsByModel(model2);
   //function returns the options for the select tag
-  const showOptions = function (categories) {
-    if (categories === "maker1") {
-      return makers.map((maker) => {
-        return (
-          <option key={maker} value={maker}>
-            Maker:{maker}
-          </option>
-        );
-      });
-    }
-    if (categories === "maker2") {
-      return makers.map((maker) => {
-        return (
-          <option key={maker} value={maker}>
-            Maker:{maker}
-          </option>
-        );
-      });
-    }
-    if (categories === "model1") {
-      return modelsByMaker1.map((model) => {
-        return (
-          <option key={model} value={model}>
-            Model:{model}
-          </option>
-        );
-      });
-    }
-    if (categories === "model2") {
-      return modelsByMaker2.map((model) => {
-        return (
-          <option key={model} value={model}>
-            Model:{model}
-          </option>
-        );
-      });
-    }
-    if (categories === "color1") {
-      return colorsByModels1.map((color) => {
-        return (
-          <option key={color} value={color}>
-            Color:{color}
-          </option>
-        );
-      });
-    }
-    if (categories === "color2") {
-      return colorsByModels2.map((color) => {
-        return (
-          <option key={color} value={color}>
-            Color:{color}
-          </option>
-        );
-      });
-    }
-    if (categories === "year1") {
-      return yearsByModels1.map((year) => {
-        return (
-          <option key={year} value={year}>
-            Year:{year}
-          </option>
-        );
-      });
-    }
-    if (categories === "year2") {
-      return yearsByModels2.map((year) => {
-        return (
-          <option key={year} value={year}>
-            Year:{year}
-          </option>
-        );
-      });
-    }
-  };
 
   return (
     <>
@@ -112,7 +39,7 @@ export default function SearchInputBar(props) {
               setMaker1(e.target.value);
             }}
           >
-            {showOptions("maker1")}
+            <ShowOptions categories="maker1" makers={makers} />
           </select>
           <select
             id="model1"
@@ -124,7 +51,7 @@ export default function SearchInputBar(props) {
             <option key="all" value="all">
               Model:All
             </option>
-            {showOptions("model1")}
+            <ShowOptions categories="model1" modelsByMaker1={modelsByMaker1} />
           </select>
           <select
             className="searchbar--select"
@@ -134,7 +61,7 @@ export default function SearchInputBar(props) {
             }}
           >
             <option value="all">Year:All</option>
-            {showOptions("year1")}
+            <ShowOptions categories="year1" yearsByModels1={yearsByModels1} />
           </select>
           <select
             id="color1"
@@ -146,10 +73,16 @@ export default function SearchInputBar(props) {
             <option key="all" value="all">
               Color:All
             </option>
-            {showOptions("color1")}
+            <ShowOptions categories="color1" colorsByModels1={colorsByModels1} />
           </select>
           <select className="searchbar--select" id="mileage1">
             <option value="all">Mileage:All</option>
+            <option value="1">0-50000 mile</option>
+            <option value="2">50000-100000 mile</option>
+            <option value="3">100000-150000 mile</option>
+            <option value="4">150000-200000 mile</option>
+            <option value="5">250000-300000 mile</option>
+            <option value="6">350000-400000 mile</option>
           </select>
         </div>
       ) : (
@@ -162,7 +95,7 @@ export default function SearchInputBar(props) {
                 setMaker1(e.target.value);
               }}
             >
-              {showOptions("maker1")}
+              <ShowOptions categories="maker1" makers={makers} />
             </select>
             <select
               id="model1"
@@ -174,7 +107,7 @@ export default function SearchInputBar(props) {
               <option key="all" value="all">
                 Model:All
               </option>
-              {showOptions("model1")}
+              <ShowOptions categories="model1" modelsByMaker1={modelsByMaker1} />
             </select>
             <select
               className="searchbar--select"
@@ -184,7 +117,7 @@ export default function SearchInputBar(props) {
               }}
             >
               <option value="all">Year:All</option>
-              {showOptions("year1")}
+              <ShowOptions categories="year1" yearsByModels1={yearsByModels1} />
             </select>
             <select
               id="color1"
@@ -196,7 +129,7 @@ export default function SearchInputBar(props) {
               <option key="all" value="all">
                 Color:All
               </option>
-              {showOptions("color1")}
+              <ShowOptions categories="color1" colorsByModels1={colorsByModels1} />
             </select>
             <select className="searchbar--select" id="mileage1">
               <option value="all">Mileage:All</option>
@@ -210,7 +143,7 @@ export default function SearchInputBar(props) {
                 setMaker2(e.target.value);
               }}
             >
-              {showOptions("maker2")}
+              <ShowOptions categories="maker2" makers={makers} />
             </select>
             <select
               className="searchbar--select"
@@ -222,7 +155,7 @@ export default function SearchInputBar(props) {
               <option key="all" value="all">
                 Model:All
               </option>
-              {showOptions("model2")}
+              <ShowOptions categories="model2" modelsByMaker2={modelsByMaker2} />
             </select>
             <select
               className="searchbar--select"
@@ -232,7 +165,7 @@ export default function SearchInputBar(props) {
               }}
             >
               <option value="all">Year:All</option>
-              {showOptions("year2")}
+              <ShowOptions categories="year2" yearsByModels2={yearsByModels2} />
             </select>
             <select
               id="color2"
@@ -244,7 +177,7 @@ export default function SearchInputBar(props) {
               <option key="all" value="all">
                 Color:All
               </option>
-              {showOptions("color2")}
+              <ShowOptions categories="color2" colorsByModels2={colorsByModels2} />
             </select>
             <select className="searchbar--select" id="mileage2">
               <option value="all">Mileage:All</option>
