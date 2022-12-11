@@ -5,7 +5,7 @@ export default function UseGetYearsByModel(model) {
   const baseURL = "http://localhost:8000/api";
   const [years, setYears] = useState([]);
   const removeDuplicate = function (arr) {
-    return [...new Set(arr)];
+    return [...new Set(arr)].sort((a, b) => b - a);
   };
   const getYearsByModel = async function (model) {
     try {
@@ -15,10 +15,10 @@ export default function UseGetYearsByModel(model) {
           return car.madeYear;
         })
         .sort();
-      const removedDuplicatedModelArr = removeDuplicate(yearArr);
-      setYears(removedDuplicatedModelArr);
+      const removedDuplicatedYearArr = removeDuplicate(yearArr);
+      setYears(removedDuplicatedYearArr);
     } catch (error) {
-      console.log("error occured in useGetModelsByMaekr", error);
+      console.log("error occured in UseGetYearsByModel", error);
     }
   };
   useEffect(() => {

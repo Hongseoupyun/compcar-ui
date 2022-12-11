@@ -8,6 +8,7 @@ export default function UseGetModelsByMaker(maker) {
     return [...new Set(arr)];
   };
   const getModelsByMaker = async function (maker) {
+    if (maker === "All") return setModel([]);
     try {
       const response = await axios.get(`${baseURL}/car/makers/${maker}`);
       const modelArr = response.data
