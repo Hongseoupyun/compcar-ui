@@ -9,16 +9,16 @@ import ShowOptions from "components/SearchPage/ShowOptions";
 export default function SearchInputBar(props) {
   const { selected } = props;
   //State for search
-  const [maker1, setMaker1] = useState("");
-  const [maker2, setMaker2] = useState("");
-  const [model1, setModel1] = useState("");
-  const [model2, setModel2] = useState("");
-  const [year1, setYear1] = useState("");
-  const [year2, setYear2] = useState("");
-  const [color1, setColor1] = useState("");
-  const [color2, setColor2] = useState("");
-  const [mileage1, setMileage1] = useState([]);
-  const [mileage2, setMileage2] = useState([]);
+  const [maker1, setMaker1] = useState("All");
+  const [maker2, setMaker2] = useState("All");
+  const [model1, setModel1] = useState("All");
+  const [model2, setModel2] = useState("All");
+  const [year1, setYear1] = useState("All");
+  const [year2, setYear2] = useState("All");
+  const [color1, setColor1] = useState("All");
+  const [color2, setColor2] = useState("All");
+  const [mileage1, setMileage1] = useState("All");
+  const [mileage2, setMileage2] = useState("All");
   const makers = UseGetMakers("maker");
   let modelsByMaker1 = UseGetModelsByMaker(maker1);
   let modelsByMaker2 = UseGetModelsByMaker(maker2);
