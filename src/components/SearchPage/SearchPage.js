@@ -18,9 +18,8 @@ export default function SearchPage() {
   const [mileage1, setMileage1] = useState("All");
   const [mileage2, setMileage2] = useState("All");
 
-  const handleSelected = () => {
-    
-    selected === "normal" ? setSelected("compare") : setSelected("normal");
+  const handleSelected = (searchOption) => {
+    setSelected(searchOption);
   };
 
   const handleSubmit = () => {
@@ -49,7 +48,7 @@ export default function SearchPage() {
           className={
             selected === "normal" ? "tap--search" : "tap--search selected"
           }
-          onClick={handleSelected}
+          onClick={() => handleSelected("normal")}
         >
           Search
         </div>
@@ -58,7 +57,7 @@ export default function SearchPage() {
             selected === "compare" ? "tap--search" : "tap--search selected"
           }
           id="compare"
-          onClick={handleSelected}
+          onClick={() => handleSelected("compare")}
         >
           Search to compare
         </div>
