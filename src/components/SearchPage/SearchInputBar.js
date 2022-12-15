@@ -1,5 +1,4 @@
 import React from "react";
-import { useState } from "react";
 import UseGetMakers from "hooks/UseGetMakers";
 import UseGetModelsByMaker from "hooks/UseGetModelsByMaker";
 import UseGetYearsByModel from "hooks/UseGetYearsByModel";
@@ -7,18 +6,25 @@ import UseGetColorsByModel from "hooks/UseGetColorsByModel";
 import ShowOptions from "components/SearchPage/ShowOptions";
 
 export default function SearchInputBar(props) {
-  const { selected } = props;
+  const {
+    selected,
+    maker1,
+    setMaker1,
+    maker2,
+    setMaker2,
+    model1,
+    setModel1,
+    model2,
+    setModel2,
+    setYear1,
+    setYear2,
+    setColor1,
+    setColor2,
+    setMileage1,
+    setMileage2,
+  } = props;
   //State for search
-  const [maker1, setMaker1] = useState("All");
-  const [maker2, setMaker2] = useState("All");
-  const [model1, setModel1] = useState("All");
-  const [model2, setModel2] = useState("All");
-  const [year1, setYear1] = useState("All");
-  const [year2, setYear2] = useState("All");
-  const [color1, setColor1] = useState("All");
-  const [color2, setColor2] = useState("All");
-  const [mileage1, setMileage1] = useState("All");
-  const [mileage2, setMileage2] = useState("All");
+
   const makers = UseGetMakers("maker");
   let modelsByMaker1 = UseGetModelsByMaker(maker1);
   let modelsByMaker2 = UseGetModelsByMaker(maker2);
@@ -30,7 +36,7 @@ export default function SearchInputBar(props) {
 
   return (
     <>
-      {selected === "noraml" ? (
+      {selected === "normal" ? (
         <div id="input1">
           <select
             id="maker1"
@@ -73,9 +79,18 @@ export default function SearchInputBar(props) {
             <option key="all" value="all">
               Color:All
             </option>
-            <ShowOptions categories="color1" colorsByModels1={colorsByModels1} />
+            <ShowOptions
+              categories="color1"
+              colorsByModels1={colorsByModels1}
+            />
           </select>
-          <select className="searchbar--select" id="mileage1">
+          <select
+            className="searchbar--select"
+            id="mileage1"
+            onChange={(e) => {
+              setMileage1(e.target.value);
+            }}
+          >
             <option value="all">Mileage:All</option>
             <option value="1">0-50000 mile</option>
             <option value="2">50000-100000 mile</option>
@@ -107,7 +122,10 @@ export default function SearchInputBar(props) {
               <option key="all" value="all">
                 Model:All
               </option>
-              <ShowOptions categories="model1" modelsByMaker1={modelsByMaker1} />
+              <ShowOptions
+                categories="model1"
+                modelsByMaker1={modelsByMaker1}
+              />
             </select>
             <select
               className="searchbar--select"
@@ -129,10 +147,25 @@ export default function SearchInputBar(props) {
               <option key="all" value="all">
                 Color:All
               </option>
-              <ShowOptions categories="color1" colorsByModels1={colorsByModels1} />
+              <ShowOptions
+                categories="color1"
+                colorsByModels1={colorsByModels1}
+              />
             </select>
-            <select className="searchbar--select" id="mileage1">
+            <select
+              className="searchbar--select"
+              id="mileage1"
+              onChange={(e) => {
+                setMileage1(e.target.value);
+              }}
+            >
               <option value="all">Mileage:All</option>
+              <option value="1">0-50000 mile</option>
+              <option value="2">50000-100000 mile</option>
+              <option value="3">100000-150000 mile</option>
+              <option value="4">150000-200000 mile</option>
+              <option value="5">250000-300000 mile</option>
+              <option value="6">350000-400000 mile</option>
             </select>
           </div>
           <div id="input2">
@@ -155,7 +188,10 @@ export default function SearchInputBar(props) {
               <option key="all" value="all">
                 Model:All
               </option>
-              <ShowOptions categories="model2" modelsByMaker2={modelsByMaker2} />
+              <ShowOptions
+                categories="model2"
+                modelsByMaker2={modelsByMaker2}
+              />
             </select>
             <select
               className="searchbar--select"
@@ -177,10 +213,25 @@ export default function SearchInputBar(props) {
               <option key="all" value="all">
                 Color:All
               </option>
-              <ShowOptions categories="color2" colorsByModels2={colorsByModels2} />
+              <ShowOptions
+                categories="color2"
+                colorsByModels2={colorsByModels2}
+              />
             </select>
-            <select className="searchbar--select" id="mileage2">
+            <select
+              className="searchbar--select"
+              id="mileage2"
+              onChange={(e) => {
+                setMileage2(e.target.value);
+              }}
+            >
               <option value="all">Mileage:All</option>
+              <option value="1">0-50000 mile</option>
+              <option value="2">50000-100000 mile</option>
+              <option value="3">100000-150000 mile</option>
+              <option value="4">150000-200000 mile</option>
+              <option value="5">250000-300000 mile</option>
+              <option value="6">350000-400000 mile</option>
             </select>
           </div>
         </>
