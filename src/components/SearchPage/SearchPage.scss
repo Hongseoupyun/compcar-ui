@@ -1,0 +1,112 @@
+.section--search {
+    background-size: 100vw 90vh;
+  
+    .container--input {
+      width: 90%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+  
+      #input1 {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+  
+      #input2 {
+        width: 100%;
+        margin-top: 25px;
+      }
+    }
+  
+    h1 {
+      color: white;
+      text-align: left;
+      width: 84vw;
+      font-size: 2.3rem;
+    }
+  
+    height: 90vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  
+    .container--search--tap {
+      display: flex;
+      width: 85vw;
+  
+      .tap--search {
+        cursor: pointer;
+        width: 16vw;
+        height: 6vh;
+        background-color: var(--primary);
+        color: white;
+        border: none;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+  
+      .selected {
+        background-color: var(--secondary);
+      }
+  
+      #compare {
+        width: 25vw;
+        height: 6vh;
+        margin-left: 10px;
+      }
+    }
+  
+    .searchbar--wrapper {
+      display: flex;
+      justify-content: space-evenly;
+      background-color: #1a122b;
+      color: white;
+      width: 85vw;
+      height: 21vh;
+      border-top-right-radius: 15px;
+      border-bottom-left-radius: 15px;
+      border-bottom-right-radius: 15px;
+  
+      select {
+        border-radius: 12px;
+        border: none;
+        width: 18%;
+        height: 2rem;
+        margin-right: 1rem;
+        text-align: left;
+  
+        option {
+          text-align: left;
+        }
+      }
+      .button--wrapper {
+        display: flex;
+        align-items: center;
+        button {
+          cursor: pointer;
+        }
+      }
+  
+      .button--search {
+        background-color: #196e86;
+        color: white;
+        border-radius: 15px;
+        border: none;
+        width: 3.5rem;
+        height: 3.5rem;
+  
+        #emoji {
+          font-size: 1.9rem;
+        }
+      }
+    }
+  }

@@ -1,8 +1,6 @@
 import "./CardApp.css";
 import Card from "./Card";
 import PopularCard from "./PopularCard";
-//import Button from './Button';
-//import data from "./data";
 import cityData from "./cityData";
 import { useState, useEffect } from "react";
 

@@ -3,13 +3,15 @@
   display: flex;
   justify-content: space-between;
   background-color: #1A122B;
+  position: sticky;
+  top: 0;
 
 }
 .img-wrapper{
   display: flex;
   align-items: center;
 }
-.logo {
+.titleLogo {
   height: 80px;
   width: 80px;
 }
@@ -26,7 +28,6 @@
   }
 }
 
-
 .sign-in {
   height: 36px;
   width: 83px;
@@ -35,4 +36,6 @@
   border-radius: 36px;
   color: #FFFFFF;
   cursor: pointer;
+  text-decoration: none;
+  line-height: 2em;
 }
