@@ -1,0 +1,14 @@
+.result--page {
+  background-color: var(--primary);
+  .searched--car--section {
+    .searched--car--info--wrapper {
+      display: flex;
+      color: white;
+      justify-content: space-around;
+      .searched--car--name {
+        font-size: 1.5rem;
+        font-weight: 600;
+      }
+    }
+  }
+}

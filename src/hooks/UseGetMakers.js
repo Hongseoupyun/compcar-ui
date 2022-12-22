@@ -12,11 +12,10 @@ export default function UseGetMakers(category) {
     try {
       const response = await axios.get(`${baseURL}/car`);
       const carArr = response.data.map((car) => {
-        return car[category].toUpperCase();
+        return car[category];
       });
       const filteredCategories = removeDuplicate(carArr);
       setCategories(filteredCategories.sort());
-      filteredCategories.unshift("All");
       setCategories(filteredCategories.filter((item) => item !== ""));
     } catch (error) {
       console.log(error);

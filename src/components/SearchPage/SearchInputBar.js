@@ -26,8 +26,8 @@ export default function SearchInputBar(props) {
   //State for search
 
   const makers = UseGetMakers("maker");
-  let modelsByMaker1 = UseGetModelsByMaker(maker1);
-  let modelsByMaker2 = UseGetModelsByMaker(maker2);
+  let modelsByMaker1 = UseGetModelsByMaker(maker1, "forInput");
+  let modelsByMaker2 = UseGetModelsByMaker(maker2, "forInput");
   let yearsByModels1 = UseGetYearsByModel(model1);
   let yearsByModels2 = UseGetYearsByModel(model2);
   let colorsByModels1 = UseGetColorsByModel(model1);
@@ -45,6 +45,7 @@ export default function SearchInputBar(props) {
               setMaker1(e.target.value);
             }}
           >
+            <option>Maker: Select Maker</option>
             <ShowOptions categories="maker1" makers={makers} />
           </select>
           <select
@@ -54,9 +55,7 @@ export default function SearchInputBar(props) {
               setModel1(e.target.value);
             }}
           >
-            <option key="all" value="all">
-              Model:All
-            </option>
+            <option>Model: Select Model</option>
             <ShowOptions categories="model1" modelsByMaker1={modelsByMaker1} />
           </select>
           <select
@@ -66,7 +65,7 @@ export default function SearchInputBar(props) {
               setYear1(e.target.value);
             }}
           >
-            <option value="all">Year:All</option>
+            <option>Year: Select Year</option>
             <ShowOptions categories="year1" yearsByModels1={yearsByModels1} />
           </select>
           <select
@@ -76,9 +75,7 @@ export default function SearchInputBar(props) {
               setColor1(e.target.value);
             }}
           >
-            <option key="all" value="all">
-              Color:All
-            </option>
+            <option>Color: Select Color</option>
             <ShowOptions
               categories="color1"
               colorsByModels1={colorsByModels1}
@@ -110,6 +107,7 @@ export default function SearchInputBar(props) {
                 setMaker1(e.target.value);
               }}
             >
+              <option>Maker: Select Maker</option>
               <ShowOptions categories="maker1" makers={makers} />
             </select>
             <select
@@ -119,9 +117,7 @@ export default function SearchInputBar(props) {
                 setModel1(e.target.value);
               }}
             >
-              <option key="all" value="all">
-                Model:All
-              </option>
+              <option>Model: Select Model</option>
               <ShowOptions
                 categories="model1"
                 modelsByMaker1={modelsByMaker1}
@@ -134,7 +130,7 @@ export default function SearchInputBar(props) {
                 setYear1(e.target.value);
               }}
             >
-              <option value="all">Year:All</option>
+              <option>Year: Select Year</option>
               <ShowOptions categories="year1" yearsByModels1={yearsByModels1} />
             </select>
             <select
@@ -144,9 +140,7 @@ export default function SearchInputBar(props) {
                 setColor1(e.target.value);
               }}
             >
-              <option key="all" value="all">
-                Color:All
-              </option>
+              <option>Color: Select Color</option>
               <ShowOptions
                 categories="color1"
                 colorsByModels1={colorsByModels1}
@@ -176,6 +170,7 @@ export default function SearchInputBar(props) {
                 setMaker2(e.target.value);
               }}
             >
+              <option>Maker: Select Maker</option>
               <ShowOptions categories="maker2" makers={makers} />
             </select>
             <select
@@ -185,9 +180,7 @@ export default function SearchInputBar(props) {
                 setModel2(e.target.value);
               }}
             >
-              <option key="all" value="all">
-                Model:All
-              </option>
+              <option>Model: Select Model</option>
               <ShowOptions
                 categories="model2"
                 modelsByMaker2={modelsByMaker2}
@@ -200,7 +193,7 @@ export default function SearchInputBar(props) {
                 setYear2(e.target.value);
               }}
             >
-              <option value="all">Year:All</option>
+              <option>Year: Select Year</option>
               <ShowOptions categories="year2" yearsByModels2={yearsByModels2} />
             </select>
             <select
@@ -210,9 +203,7 @@ export default function SearchInputBar(props) {
                 setColor2(e.target.value);
               }}
             >
-              <option key="all" value="all">
-                Color:All
-              </option>
+              <option>Color: Select Color</option>
               <ShowOptions
                 categories="color2"
                 colorsByModels2={colorsByModels2}
