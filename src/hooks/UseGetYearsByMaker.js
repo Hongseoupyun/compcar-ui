@@ -1,30 +1,30 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-export default function UseGetYearsByModel(model) {
+export default function UseGetYearsByMaker(maker) {
   const baseURL = "http://localhost:8000/api";
   const [years, setYears] = useState([]);
   const removeDuplicate = function (arr) {
-    return [...new Set(arr)].sort((a, b) => b - a);
+    return [...new Set(arr)].sort((a, b) => a - b);
   };
-  const getYearsByModel = async function (model) {
-    if (model !== null) {
+  const UseGetYearsByMaker = async function (maker) {
+    if (maker !== null) {
       try {
-        const response = await axios.get(`${baseURL}/car/models/${model}`);
+        const response = await axios.get(`${baseURL}/car/makers/${maker}`);
         const yearArr = response?.data.map((car) => {
           return car.madeYear;
         });
         const removedDuplicatedYearArr = removeDuplicate(yearArr);
         setYears(removedDuplicatedYearArr);
       } catch (error) {
-        console.log("error occured in UseGetYearsByModel", error);
+        console.log("error occured in UseGetYearsByMaker", error);
       }
     }
     return;
   };
   useEffect(() => {
-    getYearsByModel(model);
-  }, [model]);
+    UseGetYearsByMaker(maker);
+  }, [maker]);
 
   return years;
 }

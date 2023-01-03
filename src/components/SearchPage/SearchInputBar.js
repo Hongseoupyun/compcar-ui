@@ -1,38 +1,19 @@
 import React from "react";
-import UseGetMakers from "hooks/UseGetMakers";
-import UseGetModelsByMaker from "hooks/UseGetModelsByMaker";
-import UseGetYearsByModel from "hooks/UseGetYearsByModel";
-import UseGetColorsByModel from "hooks/UseGetColorsByModel";
 import ShowOptions from "components/SearchPage/ShowOptions";
 
 export default function SearchInputBar(props) {
   const {
     selected,
-    maker1,
-    setMaker1,
-    maker2,
-    setMaker2,
-    model1,
-    setModel1,
-    model2,
-    setModel2,
-    setYear1,
-    setYear2,
-    setColor1,
-    setColor2,
-    setMileage1,
-    setMileage2,
+    handleSelect,
+    makers,
+    modelsByMaker1,
+    yearsByModels1,
+    colorsByModels1,
+    modelsByMaker2,
+    yearsByModels2,
+    colorsByModels2,
   } = props;
   //State for search
-
-  const makers = UseGetMakers("maker");
-  let modelsByMaker1 = UseGetModelsByMaker(maker1, "forInput");
-  let modelsByMaker2 = UseGetModelsByMaker(maker2, "forInput");
-  let yearsByModels1 = UseGetYearsByModel(model1);
-  let yearsByModels2 = UseGetYearsByModel(model2);
-  let colorsByModels1 = UseGetColorsByModel(model1);
-  let colorsByModels2 = UseGetColorsByModel(model2);
-  //function returns the options for the select tag
 
   return (
     <>
@@ -42,7 +23,7 @@ export default function SearchInputBar(props) {
             id="maker1"
             className="searchbar--select"
             onChange={(e) => {
-              setMaker1(e.target.value);
+              handleSelect(e, "maker1", 1);
             }}
           >
             <option>Maker: Select Maker</option>
@@ -52,7 +33,7 @@ export default function SearchInputBar(props) {
             id="model1"
             className="searchbar--select"
             onChange={(e) => {
-              setModel1(e.target.value);
+              handleSelect(e, "model1", 1);
             }}
           >
             <option>Model: Select Model</option>
@@ -62,7 +43,7 @@ export default function SearchInputBar(props) {
             className="searchbar--select"
             id="year1"
             onChange={(e) => {
-              setYear1(e.target.value);
+              handleSelect(e, "year1", 1);
             }}
           >
             <option>Year: Select Year</option>
@@ -72,7 +53,7 @@ export default function SearchInputBar(props) {
             id="color1"
             className="searchbar--select"
             onChange={(e) => {
-              setColor1(e.target.value);
+              handleSelect(e, "color1", 1);
             }}
           >
             <option>Color: Select Color</option>
@@ -85,16 +66,16 @@ export default function SearchInputBar(props) {
             className="searchbar--select"
             id="mileage1"
             onChange={(e) => {
-              setMileage1(e.target.value);
+              handleSelect(e, "mileage1", 1);
             }}
           >
             <option value="all">Mileage:All</option>
-            <option value="1">0-50000 mile</option>
-            <option value="2">50000-100000 mile</option>
-            <option value="3">100000-150000 mile</option>
-            <option value="4">150000-200000 mile</option>
-            <option value="5">250000-300000 mile</option>
-            <option value="6">350000-400000 mile</option>
+            <option value="0-50000">0-50000 mile</option>
+            <option value="50000-100000">50000-100000 mile</option>
+            <option value="100000-150000">100000-150000 mile</option>
+            <option value="150000-200000">150000-200000 mile</option>
+            <option value="250000-300000">250000-300000 mile</option>
+            <option value="350000-400000"> mile</option>
           </select>
         </div>
       ) : (
@@ -104,7 +85,7 @@ export default function SearchInputBar(props) {
               id="maker1"
               className="searchbar--select"
               onChange={(e) => {
-                setMaker1(e.target.value);
+                handleSelect(e, "maker1", 1);
               }}
             >
               <option>Maker: Select Maker</option>
@@ -114,7 +95,7 @@ export default function SearchInputBar(props) {
               id="model1"
               className="searchbar--select"
               onChange={(e) => {
-                setModel1(e.target.value);
+                handleSelect(e, "model1", 1);
               }}
             >
               <option>Model: Select Model</option>
@@ -127,7 +108,7 @@ export default function SearchInputBar(props) {
               className="searchbar--select"
               id="year1"
               onChange={(e) => {
-                setYear1(e.target.value);
+                handleSelect(e, "year1", 1);
               }}
             >
               <option>Year: Select Year</option>
@@ -137,7 +118,7 @@ export default function SearchInputBar(props) {
               id="color1"
               className="searchbar--select"
               onChange={(e) => {
-                setColor1(e.target.value);
+                handleSelect(e, "color1", 1);
               }}
             >
               <option>Color: Select Color</option>
@@ -150,7 +131,7 @@ export default function SearchInputBar(props) {
               className="searchbar--select"
               id="mileage1"
               onChange={(e) => {
-                setMileage1(e.target.value);
+                handleSelect(e, "mileage1", 1);
               }}
             >
               <option value="all">Mileage:All</option>
@@ -167,7 +148,7 @@ export default function SearchInputBar(props) {
               id="maker2"
               className="searchbar--select"
               onChange={(e) => {
-                setMaker2(e.target.value);
+                handleSelect(e, "maker2", 2);
               }}
             >
               <option>Maker: Select Maker</option>
@@ -177,7 +158,7 @@ export default function SearchInputBar(props) {
               className="searchbar--select"
               id="model2"
               onChange={(e) => {
-                setModel2(e.target.value);
+                handleSelect(e, "model2", 2);
               }}
             >
               <option>Model: Select Model</option>
@@ -190,7 +171,7 @@ export default function SearchInputBar(props) {
               className="searchbar--select"
               id="year2"
               onChange={(e) => {
-                setYear2(e.target.value);
+                handleSelect(e, "year2", 2);
               }}
             >
               <option>Year: Select Year</option>
@@ -200,7 +181,7 @@ export default function SearchInputBar(props) {
               id="color2"
               className="searchbar--select"
               onChange={(e) => {
-                setColor2(e.target.value);
+                handleSelect(e, "color2", 2);
               }}
             >
               <option>Color: Select Color</option>
@@ -213,7 +194,7 @@ export default function SearchInputBar(props) {
               className="searchbar--select"
               id="mileage2"
               onChange={(e) => {
-                setMileage2(e.target.value);
+                handleSelect(e, "mileage2", 2);
               }}
             >
               <option value="all">Mileage:All</option>

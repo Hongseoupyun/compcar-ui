@@ -3,38 +3,44 @@ import "./SearchPage.scss";
 import { FaSearch } from "react-icons/fa";
 import { useState } from "react";
 import SearchInputBar from "components/SearchPage/SearchInputBar";
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-export default function SearchPage() {
+export default function SearchPage(props) {
   const [selected, setSelected] = useState("normal");
-  const [maker1, setMaker1] = useState("");
-  const [maker2, setMaker2] = useState("");
-  const [model1, setModel1] = useState("");
-  const [model2, setModel2] = useState("");
-  const [year1, setYear1] = useState("");
-  const [year2, setYear2] = useState("");
-  const [color1, setColor1] = useState("");
-  const [color2, setColor2] = useState("");
-  const [mileage1, setMileage1] = useState("");
-  const [mileage2, setMileage2] = useState("");
+  const {
+    searchedCar1,
+    searchedCar2,
+    makers,
+    modelsByMaker1,
+    yearsByModels1,
+    colorsByModels1,
+    handleSelect,
+    modelsByMaker2,
+    yearsByModels2,
+    colorsByModels2,
+  } = props;
 
   const handleSelected = (searchOption) => {
     setSelected(searchOption);
   };
 
-  const handleSubmit = () => {
-    const baseURL = "http://localhost:8000/api";
-
-    axios.all(
-      [
-        axios.post(`${baseURL}/car/makers`, { maker1, maker2 }),
-        axios.post(`${baseURL}/car/models`, { model1, model2 }),
-      ].then(
-        axios.spread((response1, response2) => {
-          console.log(response1, response2);
-        })
-      )
-    );
+  const navigate = useNavigate();
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (
+      selected === "normal" &&
+      Object.values(searchedCar1).every((value) => value !== null)
+    ) {
+      return navigate("/result");
+    }
+    if (
+      selected === "compare" &&
+      Object.values(searchedCar1).every((value) => value !== null) &&
+      Object.values(searchedCar2).every((value) => value !== null)
+    ) {
+      return navigate("/result");
+    }
+    return alert("Please select all the options");
   };
 
   return (
@@ -67,25 +73,28 @@ export default function SearchPage() {
       <div className="searchbar--wrapper">
         <form className="container--input">
           <SearchInputBar
+            searchedCar1={searchedCar1}
+            searchedCar2={searchedCar2}
             selected={selected}
-            maker1={maker1}
-            setMaker1={setMaker1}
-            maker2={maker2}
-            setMaker2={setMaker2}
-            model1={model1}
-            setModel1={setModel1}
-            model2={model2}
-            setModel2={setModel2}
-            setYear1={setYear1}
-            setYear2={setYear2}
-            setColor1={setColor1}
-            setColor2={setColor2}
-            setMileage1={setMileage1}
-            setMileage2={setMileage2}
+            setSelected={setSelected}
+            makers={makers}
+            modelsByMaker1={modelsByMaker1}
+            yearsByModels1={yearsByModels1}
+            colorsByModels1={colorsByModels1}
+            handleSelect={handleSelect}
+            modelsByMaker2={modelsByMaker2}
+            yearsByModels2={yearsByModels2}
+            colorsByModels2={colorsByModels2}
           />
         </form>
         <div className="button--wrapper">
-          <button className="button--search" type="submit">
+          <button
+            className="button--search"
+            type="submit"
+            onClick={(e) => {
+              handleSearch(e);
+            }}
+          >
             <FaSearch id="emoji" />
           </button>
         </div>

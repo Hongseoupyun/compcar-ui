@@ -8,6 +8,7 @@ export default function UseGetColorsByModel(model) {
     return [...new Set(arr)];
   };
   const getColorsByModel = async function (model) {
+    if (model === null) return setColors([]);
     try {
       const response = await axios.get(`${baseURL}/car/models/${model}`);
       const colorArr = response?.data
