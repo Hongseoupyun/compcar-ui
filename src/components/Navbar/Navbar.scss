@@ -3,7 +3,9 @@
   display: flex;
   justify-content: space-between;
   background-color: #1A122B;
-
+  position: fixed;
+  z-index: 9;
+  width: 100vw;
 }
 .img-wrapper{
   display: flex;

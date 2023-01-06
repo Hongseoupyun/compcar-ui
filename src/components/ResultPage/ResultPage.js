@@ -24,7 +24,10 @@ export default function ResultPage(props) {
 
   return (
     <div className="result--page">
-      <ComparePopUp isComparePopUpOpen={isComparePopUpOpen} />
+      <ComparePopUp
+        isComparePopUpOpen={isComparePopUpOpen}
+        onClose={() => setIsComparePopUpOpen(false)}
+      />
       <section className="searched--car--section">
         <div className="button--back--wrapper">
           <Link
@@ -92,11 +95,11 @@ export default function ResultPage(props) {
                 <div id="price">$100,000</div>
               </div>
             </div>
-            <div className="searched--card--compare">
-              <div
-                className="label--wrapper --compare"
-                onClick={() => setIsComparePopUpOpen(true)}
-              >
+            <div
+              className="searched--card--compare"
+              onClick={() => setIsComparePopUpOpen(true)}
+            >
+              <div className="label--wrapper --compare">
                 <div id="compare">Compare with your favourite</div>
               </div>
             </div>
