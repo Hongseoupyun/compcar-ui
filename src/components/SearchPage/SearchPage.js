@@ -13,7 +13,7 @@ export default function SearchPage() {
 
   return (
     <section
-      className="section--search"
+      className="section--search" id="SearchPage"
       style={{
         backgroundImage: `url(${require("assets/searchBackground.jpeg")})`,
       }}

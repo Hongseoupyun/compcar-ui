@@ -3,9 +3,12 @@
   display: flex;
   justify-content: space-between;
   background-color: #1A122B;
-  position: sticky;
+  position: fixed;
+  width: 100%;
   top: 0;
-
+  left: 0;
+  z-index: 9999;
+  transition: all 300ms ease-in-out;
 }
 .img-wrapper{
   display: flex;
@@ -26,6 +29,21 @@
   div {
     cursor: pointer;
   }
+}
+
+.find-a-car{
+  text-decoration: none;
+  color: #FFFFFF;
+}
+
+.deals{
+  text-decoration: none;
+  color: #FFFFFF;
+}
+
+.contact{
+  text-decoration: none;
+  color: #FFFFFF;
 }
 
 .sign-in {
