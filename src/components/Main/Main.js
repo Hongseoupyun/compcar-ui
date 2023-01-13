@@ -39,7 +39,10 @@ function Main() {
   // function returns the data for the graph
   let pricesByMaker1ForGraphAxis = UseGetPricesByMakers(searchedCar1.maker1);
   let yearsByMaker1ForGraphAxis = UseGetYearsByMaker(searchedCar1.maker1);
-  let carsByMaker1ForGraph = UseGetModelsByMaker(searchedCar1.maker1,"forGraph");
+  let carsByMaker1ForGraph = UseGetModelsByMaker(
+    searchedCar1.maker1,
+    "forGraph"
+  );
   console.log("carsByMaker1ForGraph: ", carsByMaker1ForGraph);
   //handler function to update the state of the searched car
   const handleSelect = (e, category, searchNumber) => {
@@ -80,9 +83,9 @@ function Main() {
               setSearchedCar1={setSearchedCar1}
               searchedCar2={searchedCar2}
               setSearchedCar2={setSearchedCar2}
-              carsByMaker1ForGraph = {carsByMaker1ForGraph}
-              pricesByMaker1ForGraphAxis = {pricesByMaker1ForGraphAxis}
-              yearsByMaker1ForGraphAxis = {yearsByMaker1ForGraphAxis}
+              carsByMaker1ForGraph={carsByMaker1ForGraph}
+              pricesByMaker1ForGraphAxis={pricesByMaker1ForGraphAxis}
+              yearsByMaker1ForGraphAxis={yearsByMaker1ForGraphAxis}
             />
           }
         />

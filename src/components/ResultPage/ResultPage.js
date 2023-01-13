@@ -2,10 +2,11 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { FaBookmark } from "react-icons/fa";
 import { BiArrowBack } from "react-icons/bi";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./ResultPage.scss";
 import ResultPageGraphs from "components/ResultPage/ResultPageGraphs";
 import ComparePopUp from "components/ComparePopUp/ComparePopUp";
+import SearchInputBar from "components/SearchPage/SearchInputBar";
 
 export default function ResultPage(props) {
   const {
@@ -21,7 +22,25 @@ export default function ResultPage(props) {
   useEffect(() => {
     console.log("searchedCar1: ", searchedCar1);
   }, []);
-
+  const navigate = useNavigate();
+  const handleBackToMainPage = (e) => {
+    e.preventDefault();
+    setSearchedCar1({
+      maker1: null,
+      model1: null,
+      year1: null,
+      color1: null,
+      mileage1: null,
+    });
+    setSearchedCar2({
+      maker2: null,
+      model2: null,
+      year2: null,
+      color2: null,
+      mileage2: null,
+    });
+    navigate("/");
+  };
   return (
     <div className="result--page">
       <ComparePopUp
@@ -29,34 +48,40 @@ export default function ResultPage(props) {
         onClose={() => setIsComparePopUpOpen(false)}
       />
       <section className="searched--car--section">
+        <div className="--search--wrapper">
+          <select>
+            <option>Maker: Select Maker</option>
+          </select>
+          <select>
+            <option>Model: Select Model</option>
+          </select>
+          <select>
+            <option>Year: Select Year</option>
+          </select>
+          <select>
+            <option>Color: Select Color</option>
+          </select>
+          <select>
+            <option>Mileage: Select Mileage</option>
+            <option value="1">0-50000 mile</option>
+            <option value="2">50000-100000 mile</option>
+            <option value="3">100000-150000 mile</option>
+            <option value="4">150000-200000 mile</option>
+            <option value="5">250000-300000 mile</option>
+            <option value="6">350000-400000 mile</option>
+          </select>
+          <div>
+            <button>Search</button>
+          </div>
+        </div>
         <div className="button--back--wrapper">
-          <Link
-            id="link"
-            to="/"
-            onClick={() => {
-              searchedCar1(
-                {
-                  maker1: null,
-                  model1: null,
-                  year1: null,
-                  color1: null,
-                  mileage1: null,
-                },
-                searchedCar1({
-                  maker2: null,
-                  model2: null,
-                  year2: null,
-                  color2: null,
-                  mileage2: null,
-                })
-              );
-            }}
+          <button
+            className="button--back"
+            onClick={(e) => handleBackToMainPage(e)}
           >
-            <button className="button--back">
-              <BiArrowBack id="emoji" />
-              <div>Back to main page</div>
-            </button>
-          </Link>
+            <BiArrowBack id="emoji" />
+            <div>Back to main page</div>
+          </button>
         </div>
         <div className="searched--car--info">
           <div className="searched--car--info--wrapper">

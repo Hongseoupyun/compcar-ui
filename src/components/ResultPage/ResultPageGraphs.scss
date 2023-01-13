@@ -1,8 +1,10 @@
 .graphs {
   display: flex;
+  flex-direction: column;
   .graphs--wrapper {
-    max-width: fit-content;
-    min-width: fit-content; 
- 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:10vh 3.5rem 3.5rem;
   }
 }

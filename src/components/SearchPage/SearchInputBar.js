@@ -75,7 +75,6 @@ export default function SearchInputBar(props) {
             <option value="100000-150000">100000-150000 mile</option>
             <option value="150000-200000">150000-200000 mile</option>
             <option value="250000-300000">250000-300000 mile</option>
-            <option value="350000-400000"> mile</option>
           </select>
         </div>
       ) : (
