@@ -7,7 +7,7 @@
     position: relative;
     flex-direction: column;
     padding: 4vh 3.5rem 0 3.5rem;
-    top: 47px;
+    top: 60px;
     .--search--wrapper {
       display: flex;
       justify-content: space-between;
@@ -29,6 +29,7 @@
         background-color: #196e86;
         height: 2rem;
         width: 6rem;
+        cursor: pointer;
       }
     }
 

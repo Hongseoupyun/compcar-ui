@@ -1,12 +1,13 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FaBookmark } from "react-icons/fa";
 import { BiArrowBack } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import "./ResultPage.scss";
 import ResultPageGraphs from "components/ResultPage/ResultPageGraphs";
 import ComparePopUp from "components/ComparePopUp/ComparePopUp";
-import SearchInputBar from "components/SearchPage/SearchInputBar";
+import ShowOptions from "components/SearchPage/ShowOptions";
+const noImage = require("assets/noImage.jpeg");
 
 export default function ResultPage(props) {
   const {
@@ -17,11 +18,15 @@ export default function ResultPage(props) {
     carsByMaker1ForGraph,
     pricesByMaker1ForGraphAxis,
     yearsByMaker1ForGraphAxis,
+    makers,
+    modelsByMaker1,
+    handleSelect,
+    handleSearch,
+    yearsByModels1,
+    colorsByModels1,
+    searchedResult,
   } = props;
   const [isComparePopUpOpen, setIsComparePopUpOpen] = useState(false);
-  useEffect(() => {
-    console.log("searchedCar1: ", searchedCar1);
-  }, []);
   const navigate = useNavigate();
   const handleBackToMainPage = (e) => {
     e.preventDefault();
@@ -49,29 +54,51 @@ export default function ResultPage(props) {
       />
       <section className="searched--car--section">
         <div className="--search--wrapper">
-          <select>
+          <select onChange={(e) => handleSelect(e, "maker1", 1)}>
             <option>Maker: Select Maker</option>
+            <ShowOptions categories="maker1" makers={makers} />
           </select>
-          <select>
+          <select
+            onChange={(e) => {
+              handleSelect(e, "model1", 1);
+            }}
+          >
             <option>Model: Select Model</option>
+            <ShowOptions categories="model1" modelsByMaker1={modelsByMaker1} />
           </select>
-          <select>
+          <select
+            onChange={(e) => {
+              handleSelect(e, "year1", 1);
+            }}
+          >
             <option>Year: Select Year</option>
+            <ShowOptions categories="year1" yearsByModels1={yearsByModels1} />
           </select>
-          <select>
+          <select
+            onChange={(e) => {
+              handleSelect(e, "color1", 1);
+            }}
+          >
             <option>Color: Select Color</option>
+            <ShowOptions
+              categories="color1"
+              colorsByModels1={colorsByModels1}
+            />
           </select>
           <select>
-            <option>Mileage: Select Mileage</option>
-            <option value="1">0-50000 mile</option>
-            <option value="2">50000-100000 mile</option>
-            <option value="3">100000-150000 mile</option>
-            <option value="4">150000-200000 mile</option>
-            <option value="5">250000-300000 mile</option>
-            <option value="6">350000-400000 mile</option>
+            <option value="">Mileage:Select Mileage</option>
+            <option value="all">Mileage:All Range</option>
+            <option value="1">Mileage:0-50000 </option>
+            <option value="2">Mileage:50000-100000 </option>
+            <option value="3">Mileage:100000-150000 </option>
+            <option value="4">Mileage:150000-200000 </option>
+            <option value="5">Mileage:250000-300000 </option>
+            <option value="6">Mileage:350000-400000 </option>
           </select>
           <div>
-            <button>Search</button>
+            <button onClick={(e) => handleSearch(e, "graph", null)}>
+              Search
+            </button>
           </div>
         </div>
         <div className="button--back--wrapper">
@@ -87,8 +114,8 @@ export default function ResultPage(props) {
           <div className="searched--car--info--wrapper">
             <div className="searched--car--name">
               {`${
-                searchedCar1.year1
-              } ${searchedCar1.maker1?.toUpperCase()} ${searchedCar1.model1?.toUpperCase()} ${searchedCar1.color1?.toUpperCase()}`}
+                searchedResult.year
+              } ${searchedResult.maker?.toUpperCase()} ${searchedResult.model?.toUpperCase()} ${searchedResult.color?.toUpperCase()}`}
             </div>
             <div className="searched--car--favourite">
               <FaBookmark id="bookmark" />
@@ -99,25 +126,37 @@ export default function ResultPage(props) {
               <img
                 alt="car--image"
                 id="car--image"
-                src={require("assets/Sehwan.jpg")}
+                src={searchedResult.url ? searchedResult.url : noImage}
               />
             </div>
             <div className="searched--card --best">
               <div className="label--wrapper">
                 <div id="label">Best</div>
-                <div id="price">$100,000</div>
+                <div id="price">
+                  {searchedResult.price.best
+                    ? `$ ${searchedResult.price.best}`
+                    : "N/A"}
+                </div>
               </div>
             </div>
             <div className="searched--card --cheapest">
               <div className="label--wrapper">
                 <div id="label">Cheapest</div>
-                <div id="price">$100,000</div>
+                <div id="price">
+                  {searchedResult.price.cheapest
+                    ? `$ ${searchedResult.price.cheapest}`
+                    : "N/A"}
+                </div>
               </div>
             </div>
             <div className="searched--card --expensive">
               <div className="label--wrapper">
                 <div id="label">Most Expensive</div>
-                <div id="price">$100,000</div>
+                <div id="price">
+                  {searchedResult.price.mostExpensive
+                    ? `$ ${searchedResult.price.mostExpensive}}`
+                    : "N/A"}
+                </div>
               </div>
             </div>
             <div
@@ -136,7 +175,6 @@ export default function ResultPage(props) {
           carsByMaker1ForGraph={carsByMaker1ForGraph}
           pricesByMaker1ForGraphAxis={pricesByMaker1ForGraphAxis}
           yearsByMaker1ForGraphAxis={yearsByMaker1ForGraphAxis}
-          searchedCar1={searchedCar1}
         />
       </section>
     </div>

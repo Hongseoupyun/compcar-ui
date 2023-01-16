@@ -69,12 +69,14 @@ export default function SearchInputBar(props) {
               handleSelect(e, "mileage1", 1);
             }}
           >
-            <option value="all">Mileage:All</option>
-            <option value="0-50000">0-50000 mile</option>
-            <option value="50000-100000">50000-100000 mile</option>
-            <option value="100000-150000">100000-150000 mile</option>
-            <option value="150000-200000">150000-200000 mile</option>
-            <option value="250000-300000">250000-300000 mile</option>
+          <option value="">Mileage:Select Mileage</option>
+              <option value="all">Mileage:All Range</option>
+              <option value="1">Mileage:0-50000 </option>
+              <option value="2">Mileage:50000-100000 </option>
+              <option value="3">Mileage:100000-150000 </option>
+              <option value="4">Mileage:150000-200000 </option>
+              <option value="5">Mileage:250000-300000 </option>
+              <option value="6">Mileage:350000-400000 </option>
           </select>
         </div>
       ) : (
@@ -133,13 +135,14 @@ export default function SearchInputBar(props) {
                 handleSelect(e, "mileage1", 1);
               }}
             >
-              <option value="all">Mileage:All</option>
-              <option value="1">0-50000 mile</option>
-              <option value="2">50000-100000 mile</option>
-              <option value="3">100000-150000 mile</option>
-              <option value="4">150000-200000 mile</option>
-              <option value="5">250000-300000 mile</option>
-              <option value="6">350000-400000 mile</option>
+              <option value="">Mileage:Select Mileage</option>
+              <option value="all">Mileage:All Range</option>
+              <option value="1">Mileage:0-50000 </option>
+              <option value="2">Mileage:50000-100000 </option>
+              <option value="3">Mileage:100000-150000 </option>
+              <option value="4">Mileage:150000-200000 </option>
+              <option value="5">Mileage:250000-300000 </option>
+              <option value="6">Mileage:350000-400000 </option>
             </select>
           </div>
           <div id="input2">
@@ -196,13 +199,14 @@ export default function SearchInputBar(props) {
                 handleSelect(e, "mileage2", 2);
               }}
             >
-              <option value="all">Mileage:All</option>
-              <option value="1">0-50000 mile</option>
-              <option value="2">50000-100000 mile</option>
-              <option value="3">100000-150000 mile</option>
-              <option value="4">150000-200000 mile</option>
-              <option value="5">250000-300000 mile</option>
-              <option value="6">350000-400000 mile</option>
+          <option value="">Mileage:Select Mileage</option>
+              <option value="all">Mileage:All Range</option>
+              <option value="1">Mileage:0-50000 </option>
+              <option value="2">Mileage:50000-100000 </option>
+              <option value="3">Mileage:100000-150000 </option>
+              <option value="4">Mileage:150000-200000 </option>
+              <option value="5">Mileage:250000-300000 </option>
+              <option value="6">Mileage:350000-400000 </option>
             </select>
           </div>
         </>

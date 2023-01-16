@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 export default function UseGetPricesByMakers(maker) {
-  const baseURL = "http://localhost:8000/api";
+  const baseURL = "https://compcar-api.onrender.com/api";
   const [prices, setPrices] = useState([]);
   const removeDuplicate = function (arr) {
     return [...new Set(arr)];
@@ -11,7 +11,7 @@ export default function UseGetPricesByMakers(maker) {
     if (maker !== null) {
       try {
         const response = await axios.get(`${baseURL}/car/makers/${maker}`);
-        const pricesArr = response.data
+        const pricesArr = response?.data
           .map((car) => {
             return car.price;
           })

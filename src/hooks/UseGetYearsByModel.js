@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 export default function UseGetYearsByModel(model) {
-  const baseURL = "http://localhost:8000/api";
+  const baseURL = "https://compcar-api.onrender.com/api";
   const [years, setYears] = useState([]);
   const removeDuplicate = function (arr) {
     return [...new Set(arr)].sort((a, b) => b - a);

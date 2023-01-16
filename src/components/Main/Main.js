@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import axios from "axios";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import LandingPage from "components/Main/LandingPage";
 import ResultPage from "components/ResultPage/ResultPage";
 import UseGetMakers from "hooks/UseGetMakers";
@@ -9,8 +10,10 @@ import UseGetYearsByModel from "hooks/UseGetYearsByModel";
 import UseGetColorsByModel from "hooks/UseGetColorsByModel";
 import UseGetPricesByMakers from "hooks/UseGetPricesByMakers";
 import UseGetYearsByMaker from "hooks/UseGetYearsByMaker";
+import UseGetImagebyYearsAndColors from "hooks/UseGetImagebyYearsAndColors";
 
 function Main() {
+  const navigate = useNavigate();
   // state for the input
   const [searchedCar1, setSearchedCar1] = useState({
     maker1: null,
@@ -27,7 +30,26 @@ function Main() {
     mileage2: "All",
   });
 
-  //function returns the options for the select tag
+  //state for graph data
+  const [carsByMaker1ForGraph, setCarsByMaker1ForGraph] = useState([]);
+  console.log("carsByMaker1ForGraph===>", carsByMaker1ForGraph);
+
+  //state for searched result
+  const [searchedResult, setSearchedResult] = useState({
+    maker: null,
+    model: null,
+    year: null,
+    color: null,
+    mileage: null,
+    url: null,
+    price: {
+      best: null,
+      cheapest: null,
+      mostExpensive: null,
+    },
+  });
+
+  //function returns the options for the select options
   const makers = UseGetMakers("maker");
   let modelsByMaker1 = UseGetModelsByMaker(searchedCar1.maker1, "forInput");
   let modelsByMaker2 = UseGetModelsByMaker(searchedCar2.maker2, "forInput");
@@ -39,11 +61,12 @@ function Main() {
   // function returns the data for the graph
   let pricesByMaker1ForGraphAxis = UseGetPricesByMakers(searchedCar1.maker1);
   let yearsByMaker1ForGraphAxis = UseGetYearsByMaker(searchedCar1.maker1);
-  let carsByMaker1ForGraph = UseGetModelsByMaker(
-    searchedCar1.maker1,
-    "forGraph"
+  let resultImage = UseGetImagebyYearsAndColors(
+    searchedCar1.model1,
+    searchedCar1.year1,
+    searchedCar1.color1
   );
-  console.log("carsByMaker1ForGraph: ", carsByMaker1ForGraph);
+  
   //handler function to update the state of the searched car
   const handleSelect = (e, category, searchNumber) => {
     const value = e.target.value;
@@ -53,6 +76,71 @@ function Main() {
     if (searchNumber === 2) {
       setSearchedCar2({ ...searchedCar2, [category]: value });
     }
+  };
+
+  const handleSearch = async (e, page, selected) => {
+    e.preventDefault();
+    const removeDuplicate = function (arr) {
+      return [...new Set(arr)];
+    };
+
+    //function to fetch the data for the graph
+    const fetchGraphdata = async () => {
+      const baseURL = "https://compcar-api.onrender.com/api";
+      try {
+        const response = await axios.get(
+          `${baseURL}/car/graph/${searchedCar1.maker1}`
+        );
+        const modelArr = response.data;
+        const removedDuplicatedModelArr = removeDuplicate(modelArr);
+        setCarsByMaker1ForGraph(removedDuplicatedModelArr);
+      } catch (error) {
+        console.log("error occured in CarInfoForGraph", error);
+      }
+      return;
+    };
+    //function to set the searched result to display
+    const setSearchedCarResultToDisplay = function () {
+      setSearchedResult({
+        maker: searchedCar1.maker1,
+        model: searchedCar1.model1,
+        year: searchedCar1.year1,
+        color: searchedCar1.color1,
+        mileage: searchedCar1.mileage1,
+        url: resultImage,
+      });
+      return;
+    };
+
+    if (
+      page === "graph" &&
+      selected === null &&
+      Object.values(searchedCar1).every((value) => value !== null)
+    ) {
+      fetchGraphdata();
+      setSearchedCarResultToDisplay();
+      return;
+    }
+    if (
+      page === "search" &&
+      selected === "normal" &&
+      Object.values(searchedCar1).every((value) => value !== null)
+    ) {
+      return fetchGraphdata().then(() => {
+        setSearchedCarResultToDisplay();
+        navigate("/result");
+      });
+    }
+    if (
+      page === "search" &&
+      selected === "compare" &&
+      Object.values(searchedCar1).every((value) => value !== null) &&
+      Object.values(searchedCar2).every((value) => value !== null)
+    ) {
+      return navigate("/result");
+    }
+
+    return alert("Please select all the options");
   };
 
   return (
@@ -72,6 +160,7 @@ function Main() {
               colorsByModels1={colorsByModels1}
               colorsByModels2={colorsByModels2}
               handleSelect={handleSelect}
+              handleSearch={handleSearch}
             />
           }
         />
@@ -86,6 +175,13 @@ function Main() {
               carsByMaker1ForGraph={carsByMaker1ForGraph}
               pricesByMaker1ForGraphAxis={pricesByMaker1ForGraphAxis}
               yearsByMaker1ForGraphAxis={yearsByMaker1ForGraphAxis}
+              makers={makers}
+              modelsByMaker1={modelsByMaker1}
+              handleSelect={handleSelect}
+              handleSearch={handleSearch}
+              yearsByModels1={yearsByModels1}
+              colorsByModels1={colorsByModels1}
+              searchedResult={searchedResult}
             />
           }
         />

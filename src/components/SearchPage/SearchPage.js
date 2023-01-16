@@ -3,7 +3,7 @@ import "./SearchPage.scss";
 import { FaSearch } from "react-icons/fa";
 import { useState } from "react";
 import SearchInputBar from "components/SearchPage/SearchInputBar";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 export default function SearchPage(props) {
   const [selected, setSelected] = useState("normal");
@@ -18,29 +18,11 @@ export default function SearchPage(props) {
     modelsByMaker2,
     yearsByModels2,
     colorsByModels2,
+    handleSearch,
   } = props;
 
   const handleSelected = (searchOption) => {
     setSelected(searchOption);
-  };
-
-  const navigate = useNavigate();
-  const handleSearch = (e) => {
-    e.preventDefault();
-    if (
-      selected === "normal" &&
-      Object.values(searchedCar1).every((value) => value !== null)
-    ) {
-      return navigate("/result");
-    }
-    if (
-      selected === "compare" &&
-      Object.values(searchedCar1).every((value) => value !== null) &&
-      Object.values(searchedCar2).every((value) => value !== null)
-    ) {
-      return navigate("/result");
-    }
-    return alert("Please select all the options");
   };
 
   return (
@@ -92,7 +74,7 @@ export default function SearchPage(props) {
             className="button--search"
             type="submit"
             onClick={(e) => {
-              handleSearch(e);
+              handleSearch(e, "search", selected);
             }}
           >
             <FaSearch id="emoji" />
