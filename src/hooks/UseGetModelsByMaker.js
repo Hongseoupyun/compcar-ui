@@ -13,6 +13,9 @@ export default function UseGetModelsByMaker(maker, purpose) {
         const response = await axios.get(`${baseURL}/car/makers/${maker}`);
         const modelArr = response?.data
           .map((car) => {
+            if (maker == "BMW") {
+              return car.model;
+            }
             return car.model.split(" ")[0];
           })
           .sort();

@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import axios from "axios";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import LandingPage from "components/Main/LandingPage";
@@ -32,7 +32,6 @@ function Main() {
 
   //state for graph data
   const [carsByMaker1ForGraph, setCarsByMaker1ForGraph] = useState([]);
-  console.log("carsByMaker1ForGraph===>", carsByMaker1ForGraph);
 
   //state for searched result
   const [searchedResult, setSearchedResult] = useState({
@@ -55,18 +54,18 @@ function Main() {
   let modelsByMaker2 = UseGetModelsByMaker(searchedCar2.maker2, "forInput");
   let yearsByModels1 = UseGetYearsByModel(searchedCar1.model1);
   let yearsByModels2 = UseGetYearsByModel(searchedCar2.model2);
-  let colorsByModels1 = UseGetColorsByModel(searchedCar1.model1);
-  let colorsByModels2 = UseGetColorsByModel(searchedCar2.model2);
+  let colorsByModels1 = UseGetColorsByModel(searchedCar1.model1,searchedCar1.year1);
+  let colorsByModels2 = UseGetColorsByModel(searchedCar2.model2,searchedCar2.year2);
 
   // function returns the data for the graph
-  let pricesByMaker1ForGraphAxis = UseGetPricesByMakers(searchedCar1.maker1);
-  let yearsByMaker1ForGraphAxis = UseGetYearsByMaker(searchedCar1.maker1);
+  let pricesByMaker1ForGraphAxis = UseGetPricesByMakers(searchedResult.maker);
+  let yearsByMaker1ForGraphAxis = UseGetYearsByMaker(searchedResult.maker);
   let resultImage = UseGetImagebyYearsAndColors(
     searchedCar1.model1,
     searchedCar1.year1,
-    searchedCar1.color1
+    searchedCar1.color1,
   );
-  
+
   //handler function to update the state of the searched car
   const handleSelect = (e, category, searchNumber) => {
     const value = e.target.value;
@@ -80,10 +79,6 @@ function Main() {
 
   const handleSearch = async (e, page, selected) => {
     e.preventDefault();
-    const removeDuplicate = function (arr) {
-      return [...new Set(arr)];
-    };
-
     //function to fetch the data for the graph
     const fetchGraphdata = async () => {
       const baseURL = "https://compcar-api.onrender.com/api";
@@ -92,8 +87,29 @@ function Main() {
           `${baseURL}/car/graph/${searchedCar1.maker1}`
         );
         const modelArr = response.data;
-        const removedDuplicatedModelArr = removeDuplicate(modelArr);
-        setCarsByMaker1ForGraph(removedDuplicatedModelArr);
+        setCarsByMaker1ForGraph(modelArr);
+        //To find the price ranges of searched car
+        let filtredModel = modelArr.find((car) => {
+          if (car.name.includes(searchedCar1.model1)) {
+            return car;
+          }
+          return;
+        });
+        let priceArr = filtredModel.data
+          .map((data) => {
+            return data.price;
+          })
+          .sort((a, b) => b - a);
+        setSearchedResult({
+          ...searchedResult,
+          price: {
+            best: priceArr[Math.floor(priceArr.length / 2)],
+            cheapest: priceArr[priceArr.length - 1],
+            mostExpensive: priceArr[0],
+          },
+        });
+        console.log("priceArr-====", priceArr);
+        console.log("searchedResult-====", searchedResult);
       } catch (error) {
         console.log("error occured in CarInfoForGraph", error);
       }
@@ -102,12 +118,13 @@ function Main() {
     //function to set the searched result to display
     const setSearchedCarResultToDisplay = function () {
       setSearchedResult({
+        ...searchedResult,
         maker: searchedCar1.maker1,
         model: searchedCar1.model1,
         year: searchedCar1.year1,
         color: searchedCar1.color1,
         mileage: searchedCar1.mileage1,
-        url: resultImage,
+        url: resultImage[0],
       });
       return;
     };
@@ -117,9 +134,9 @@ function Main() {
       selected === null &&
       Object.values(searchedCar1).every((value) => value !== null)
     ) {
-      fetchGraphdata();
-      setSearchedCarResultToDisplay();
-      return;
+      return fetchGraphdata().then(() => {
+        setSearchedCarResultToDisplay();
+      });
     }
     if (
       page === "search" &&
@@ -142,7 +159,8 @@ function Main() {
 
     return alert("Please select all the options");
   };
-
+  console.log("colorsByModels1-------", colorsByModels1);
+  console.log("resultImage-------", resultImage);
   return (
     <div className="main">
       <Routes>

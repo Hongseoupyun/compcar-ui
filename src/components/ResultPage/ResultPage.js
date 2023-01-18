@@ -133,8 +133,8 @@ export default function ResultPage(props) {
               <div className="label--wrapper">
                 <div id="label">Best</div>
                 <div id="price">
-                  {searchedResult.price.best
-                    ? `$ ${searchedResult.price.best}`
+                  {searchedResult.price?.best
+                    ? `$${searchedResult.price?.best}`
                     : "N/A"}
                 </div>
               </div>
@@ -143,8 +143,8 @@ export default function ResultPage(props) {
               <div className="label--wrapper">
                 <div id="label">Cheapest</div>
                 <div id="price">
-                  {searchedResult.price.cheapest
-                    ? `$ ${searchedResult.price.cheapest}`
+                  {searchedResult.price?.cheapest
+                    ? `$${searchedResult.price?.cheapest}`
                     : "N/A"}
                 </div>
               </div>
@@ -153,8 +153,8 @@ export default function ResultPage(props) {
               <div className="label--wrapper">
                 <div id="label">Most Expensive</div>
                 <div id="price">
-                  {searchedResult.price.mostExpensive
-                    ? `$ ${searchedResult.price.mostExpensive}}`
+                  {searchedResult.price?.mostExpensive
+                    ? `$${searchedResult.price?.mostExpensive}`
                     : "N/A"}
                 </div>
               </div>

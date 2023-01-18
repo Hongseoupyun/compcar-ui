@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { Scatter } from "react-chartjs-2";
 import "./ResultPageGraphs.scss";
 import {
@@ -105,13 +105,11 @@ function ResultPageGraphs(props) {
     },
   };
 
-
   return (
     <div className="graphs">
       <div className="graphs--wrapper">
         <Scatter className="--1" data={data1ForGraph1} options={options1} />
       </div>
-
       <div className="graphs--wrapper">
         <Scatter className="--2" data={data1ForGraph2} options={options2} />
       </div>
@@ -119,4 +117,4 @@ function ResultPageGraphs(props) {
   );
 }
 
-export default ResultPageGraphs;
+export default memo(ResultPageGraphs);
