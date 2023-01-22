@@ -106,7 +106,7 @@ function SignUp() {
                 onChange={checkName}
               />
             </div>
-            <div className="inputWrap" style={{ marginTop: '26px' }}>
+            <div className="inputWrap">
               <input
                 type="password"
                 className="input"
@@ -115,7 +115,7 @@ function SignUp() {
                 onChange={checkPw}
               />
             </div>
-            <div className="inputWrap" style={{ marginTop: '26px' }}>
+            <div className="inputWrap">
               <input
                 type="password"
                 className="input"
