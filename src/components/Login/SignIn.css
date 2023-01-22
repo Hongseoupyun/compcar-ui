@@ -23,7 +23,7 @@
   width: 450px;
   height: 500px;
   margin: 30px;
-  margin-top: 120px;
+  /* margin-top: 120px; */
   border: solid 2px rgb(198, 198, 200);
   border-radius: 15px;
   box-shadow: 0 10px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -86,13 +86,14 @@
 }
 
 .logo {
-  position: absolute;
+  /* position: absolute; */
+  margin: 0 auto;
 }
 
 .logoImg {
   width: 175px;
-  margin: -0.5em 0 0 1.5rem;
-  transform: translate(100%, 0);
+  margin-top: 1em;
+  /* transform: translate(100%, 0); */
 }
 
 .btn1 {
