@@ -1,28 +1,30 @@
-import React from "react";
-import "./SearchPage.scss";
-import { FaSearch } from "react-icons/fa";
-import { useState } from "react";
-import SearchInputBar from "components/SearchPage/SearchInputBar";
+import React from 'react';
+import './SearchPage.scss';
+import { FaSearch } from 'react-icons/fa';
+import { useState } from 'react';
+import SearchInputBar from 'components/SearchPage/SearchInputBar';
 
 export default function SearchPage() {
-  const [selected, setSelected] = useState("noraml");
+  const [selected, setSelected] = useState('noraml');
 
   const handleSelected = () => {
-    selected === "noraml" ? setSelected("compare") : setSelected("noraml");
+    selected === 'noraml' ? setSelected('compare') : setSelected('noraml');
   };
 
   return (
     <section
-      className="section--search" id="SearchPage"
+      className="section--search"
+      id="SearchPage"
       style={{
-        backgroundImage: `url(${require("assets/searchBackground.jpeg")})`,
+        backgroundImage: `url(${require('assets/searchBackground.jpeg')})`,
+        'background-size': 'cover',
       }}
     >
       <h1>FIND YOUR DREAM CAR</h1>
       <div className="container--search--tap">
         <div
           className={
-            selected === "noraml" ? "tap--search" : "tap--search selected"
+            selected === 'noraml' ? 'tap--search' : 'tap--search selected'
           }
           onClick={handleSelected}
         >
@@ -30,7 +32,7 @@ export default function SearchPage() {
         </div>
         <div
           className={
-            selected === "compare" ? "tap--search" : "tap--search selected"
+            selected === 'compare' ? 'tap--search' : 'tap--search selected'
           }
           id="compare"
           onClick={handleSelected}

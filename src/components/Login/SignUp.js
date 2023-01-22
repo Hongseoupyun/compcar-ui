@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import "./SignUp.css";
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import './SignUp.css';
 
 function SignUp() {
   const navigate = useNavigate();
   const go = () => {
-    navigate("/SignIn");
+    navigate('/SignIn');
   };
 
-  const [email, setEmail] = useState("");
-  const [pw, setPw] = useState("");
-  const [name, setName] = useState("");
-  const [rePw, setRePw] = useState("");
+  const [email, setEmail] = useState('');
+  const [pw, setPw] = useState('');
+  const [name, setName] = useState('');
+  const [rePw, setRePw] = useState('');
 
   const [emailValid, setEmailValid] = useState(false);
   const [pwValid, setPwValid] = useState(false);
@@ -62,88 +62,88 @@ function SignUp() {
     }
     setNotAllow(true);
   }, [emailValid, pwValid]);
-  
+
   return (
     <div className="signUp">
-    <div className="bgImg">
-      <img
-        className="signUpImg"
-        src={require("assets/signUp.png")}
-        alt="signIn"
-      />
-    </div>
-    <div className="page">
-      <div className="logo">
-        <img className="logoImg" src={require("assets/logo.png")} alt="logo" />
-      </div>
-
-      <div className="loginCard">
-        <div className="btn1">
-          <p className="up">Sign Up</p>
-          <p className="in" onClick={go} >Sign In</p>
+      <div className="signUpbgImg"></div>
+      <div className="page">
+        <div className="logo">
+          <img
+            className="logoImg"
+            src={require('assets/logo.png')}
+            alt="logo"
+          />
         </div>
-        <div className="contentsWrap">
-          <div className="inputWrap">
-            <input
-              type="text"
-              className="input"
-              placeholder="Email address"
-              value={email}
-              onChange={checkEmail}
-            />
-          </div>
-          <div className="errorMessage">
-            {!emailValid && email.length > 0 && (
-              <div>Please enter correct email.</div>
-            )}
-          </div>
-          <div className="inputWrap">
-            <input
-              type="text"
-              className="input"
-              placeholder="Full Name(First Name and Last Name)"
-              value={name}
-              onChange={checkName}
-            />
-          </div>
-          <div className="inputWrap" style={{ marginTop: "26px" }}>
-            <input
-              type="password"
-              className="input"
-              placeholder="Password"
-              value={pw}
-              onChange={checkPw}
-            />
-          </div>
-          <div className="inputWrap" style={{ marginTop: "26px" }}>
-            <input
-              type="password"
-              className="input"
-              placeholder="Re-type Password"
-              value={rePw}
-              onChange={checkRePw}
-            />
-          </div>
-          <div className="errorMessage">
-            {!pwValid && pw.length > 0 && (
-              <div>Please enter correct password.</div>
-            )}
-          </div>
 
-          <div>
-            <button
-              onClick="onClickConfirmBtn"
-              disabled={notAllow}
-              className="button"
-            >
-              {" "}
-              Create an Account
-            </button>
+        <div className="loginCard">
+          <div className="btn1">
+            <p className="up">Sign Up</p>
+            <p className="in" onClick={go}>
+              Sign In
+            </p>
+          </div>
+          <div className="contentsWrap">
+            <div className="inputWrap">
+              <input
+                type="text"
+                className="input"
+                placeholder="Email address"
+                value={email}
+                onChange={checkEmail}
+              />
+            </div>
+            <div className="errorMessage">
+              {!emailValid && email.length > 0 && (
+                <div>Please enter correct email.</div>
+              )}
+            </div>
+            <div className="inputWrap">
+              <input
+                type="text"
+                className="input"
+                placeholder="Full Name(First Name and Last Name)"
+                value={name}
+                onChange={checkName}
+              />
+            </div>
+            <div className="inputWrap" style={{ marginTop: '26px' }}>
+              <input
+                type="password"
+                className="input"
+                placeholder="Password"
+                value={pw}
+                onChange={checkPw}
+              />
+            </div>
+            <div className="inputWrap" style={{ marginTop: '26px' }}>
+              <input
+                type="password"
+                className="input"
+                placeholder="Re-type Password"
+                value={rePw}
+                onChange={checkRePw}
+              />
+            </div>
+            <div className="errorMessage">
+              {!pwValid && pw.length > 0 && (
+                <div>Please enter correct password.</div>
+              )}
+            </div>
+
+            <div>
+              <button
+                onClick="onClickConfirmBtn"
+                disabled={notAllow}
+                className="button"
+              >
+                {' '}
+                Create an Account
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
   );
 }
 

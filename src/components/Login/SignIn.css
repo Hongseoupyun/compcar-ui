@@ -1,13 +1,18 @@
 .signIn {
   display: flex;
   margin-top: 10vh;
+  height: 750px;
+}
+
+.signInbgImg {
+  width: 50%;
+  background: url('../../assets/signIn.png');
+  background-size: cover;
 }
 
 .page {
-  position: absolute;
-  max-width: 500px;
-  right: 100;
-  transform: translate(180%, 0);
+  width: 50%;
+  height: 100vh;
 }
 
 .loginCard {
@@ -86,7 +91,7 @@
 
 .logoImg {
   width: 175px;
-  margin-top: -0.5em;
+  margin: -0.5em 0 0 1.5rem;
   transform: translate(100%, 0);
 }
 
@@ -105,12 +110,4 @@
 .up1 {
   border-bottom: 1px solid rgb(198, 198, 200);
   width: 50%;
-}
-
-.bgImg {
-  max-width: 50%;
-}
-.signInImg {
-  width: 100%;
-  max-height: 63%;
 }

@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import "./SignIn.css";
-import axios from "axios";
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import './SignIn.css';
+import axios from 'axios';
 
 function SignIn() {
   const navigate = useNavigate();
   const go = () => {
-    navigate("/SignUp");
+    navigate('/SignUp');
   };
 
-  const [email, setEmail] = useState("");
-  const [pw, setPw] = useState("");
+  const [email, setEmail] = useState('');
+  const [pw, setPw] = useState('');
   const [emailValid, setEmailValid] = useState(false);
   const [pwValid, setPwValid] = useState(false);
   const [notAllow, setNotAllow] = useState(true);
@@ -47,28 +47,22 @@ function SignIn() {
 
   return (
     <div className="signIn">
-      <div className="bgImg">
-        <img
-          className="signInImg"
-          src={require("assets/signIn.png")}
-          alt="signIn"
-        />
-      </div>
+      <div className="signInbgImg"></div>
       <div className="page">
         <div className="logo">
           <img
             className="logoImg"
-            src={require("assets/logo.png")}
+            src={require('assets/logo.png')}
             alt="logo"
           />
         </div>
 
         <div className="loginCard">
           <div className="btn1">
-            <p className="up1" onClick={go} >Sign Up</p>
-            <p className="in1">
-            Sign In
+            <p className="up1" onClick={go}>
+              Sign Up
             </p>
+            <p className="in1">Sign In</p>
           </div>
           <div className="contentsWrap_1">
             <div className="inputWrap">
@@ -85,7 +79,7 @@ function SignIn() {
                 <div>Please enter correct email.</div>
               )}
             </div>
-            <div className="inputWrap" style={{ marginTop: "26px" }}>
+            <div className="inputWrap" style={{ marginTop: '26px' }}>
               <input
                 type="password"
                 className="input"
@@ -106,7 +100,7 @@ function SignIn() {
                 disabled={notAllow}
                 className="button"
               >
-                {" "}
+                {' '}
                 Sign In
               </button>
             </div>
