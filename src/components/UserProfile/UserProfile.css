@@ -1,0 +1,15 @@
+.userProfile {
+  display: flex;
+  margin-top: 10vh;
+  height: 100vh;
+}
+
+.bgImg {
+  width: 60%;
+  background: url('../../assets/userProfile.png');
+  background-size: cover;
+}
+
+.profile {
+  width: 40%;
+}

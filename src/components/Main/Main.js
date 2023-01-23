@@ -6,6 +6,7 @@ import SignUp from 'components/Login/SignUp';
 import Cardapp from 'components/Card/Cardapp';
 import SearchPage from 'components/SearchPage/SearchPage';
 import ContactUs from 'components/ContactUs/ContactUs';
+import UserProfile from 'components/UserProfile/UserProfile';
 
 function Main() {
   return (
@@ -17,6 +18,7 @@ function Main() {
         <Route path="/CardApp" element={<Cardapp />} />
         <Route path="/SearchPage" element={<SearchPage />} />
         <Route path="/ContactUs" element={<ContactUs />} />
+        <Route path="/UserProfile" element={<UserProfile />} />
       </Routes>
     </div>
   );
