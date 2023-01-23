@@ -74,7 +74,7 @@ export default function SearchPage(props) {
             className="button--search"
             type="submit"
             onClick={(e) => {
-              handleSearch(e, "search", selected);
+              handleSearch(e, "search", "normal");
             }}
           >
             <FaSearch id="emoji" />

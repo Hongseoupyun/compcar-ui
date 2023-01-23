@@ -46,6 +46,7 @@ export default function ResultPage(props) {
     });
     navigate("/");
   };
+
   return (
     <div className="result--page">
       <ComparePopUp

@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import LandingPage from "components/Main/LandingPage";
@@ -54,16 +54,22 @@ function Main() {
   let modelsByMaker2 = UseGetModelsByMaker(searchedCar2.maker2, "forInput");
   let yearsByModels1 = UseGetYearsByModel(searchedCar1.model1);
   let yearsByModels2 = UseGetYearsByModel(searchedCar2.model2);
-  let colorsByModels1 = UseGetColorsByModel(searchedCar1.model1,searchedCar1.year1);
-  let colorsByModels2 = UseGetColorsByModel(searchedCar2.model2,searchedCar2.year2);
+  let colorsByModels1 = UseGetColorsByModel(
+    searchedCar1.model1,
+    searchedCar1.year1
+  );
+  let colorsByModels2 = UseGetColorsByModel(
+    searchedCar2.model2,
+    searchedCar2.year2
+  );
 
   // function returns the data for the graph
   let pricesByMaker1ForGraphAxis = UseGetPricesByMakers(searchedResult.maker);
   let yearsByMaker1ForGraphAxis = UseGetYearsByMaker(searchedResult.maker);
   let resultImage = UseGetImagebyYearsAndColors(
-    searchedCar1.model1,
-    searchedCar1.year1,
-    searchedCar1.color1,
+    searchedResult.model,
+    searchedResult.year,
+    searchedResult.color
   );
 
   //handler function to update the state of the searched car
@@ -80,43 +86,47 @@ function Main() {
   const handleSearch = async (e, page, selected) => {
     e.preventDefault();
     //function to fetch the data for the graph
-    const fetchGraphdata = async () => {
+    async function fetchGraphdata() {
       const baseURL = "https://compcar-api.onrender.com/api";
       try {
         const response = await axios.get(
-          `${baseURL}/car/graph/${searchedCar1.maker1}`
+          `${baseURL}/car/graph/${searchedResult.maker}`
         );
         const modelArr = response.data;
         setCarsByMaker1ForGraph(modelArr);
         //To find the price ranges of searched car
-        let filtredModel = modelArr.find((car) => {
-          if (car.name.includes(searchedCar1.model1)) {
+        let filtereddModel = modelArr.find((car) => {
+          if (car.name.includes(searchedResult.model)) {
             return car;
           }
           return;
         });
-        let priceArr = filtredModel.data
+        let priceArr = filtereddModel.data
           .map((data) => {
             return data.price;
           })
           .sort((a, b) => b - a);
+
+        let bestPrice = priceArr[Math.floor(priceArr.length / 2)];
+        let cheapestPrice = priceArr[priceArr.length - 1];
+        let mostExpensivePrice = priceArr[0];
+
         setSearchedResult({
           ...searchedResult,
           price: {
-            best: priceArr[Math.floor(priceArr.length / 2)],
-            cheapest: priceArr[priceArr.length - 1],
-            mostExpensive: priceArr[0],
+            best: bestPrice,
+            cheapest: cheapestPrice,
+            mostExpensive: mostExpensivePrice,
           },
         });
         console.log("priceArr-====", priceArr);
-        console.log("searchedResult-====", searchedResult);
       } catch (error) {
         console.log("error occured in CarInfoForGraph", error);
       }
       return;
-    };
+    }
     //function to set the searched result to display
-    const setSearchedCarResultToDisplay = function () {
+    function setSearchedCarResultToDisplay() {
       setSearchedResult({
         ...searchedResult,
         maker: searchedCar1.maker1,
@@ -127,7 +137,7 @@ function Main() {
         url: resultImage[0],
       });
       return;
-    };
+    }
 
     if (
       page === "graph" &&
@@ -143,10 +153,11 @@ function Main() {
       selected === "normal" &&
       Object.values(searchedCar1).every((value) => value !== null)
     ) {
-      return fetchGraphdata().then(() => {
-        setSearchedCarResultToDisplay();
-        navigate("/result");
-      });
+      return fetchGraphdata()
+        .then(() => {
+          setSearchedCarResultToDisplay();
+        })
+        .then(() => navigate("/result"));
     }
     if (
       page === "search" &&
@@ -159,8 +170,7 @@ function Main() {
 
     return alert("Please select all the options");
   };
-  console.log("colorsByModels1-------", colorsByModels1);
-  console.log("resultImage-------", resultImage);
+  console.log("searchedResult-====", searchedResult);
   return (
     <div className="main">
       <Routes>
