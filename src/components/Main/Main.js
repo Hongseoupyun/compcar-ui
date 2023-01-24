@@ -14,6 +14,8 @@ import UseGetImagebyYearsAndColors from "hooks/UseGetImagebyYearsAndColors";
 
 function Main() {
   const navigate = useNavigate();
+  //
+  const [isLoading, setIsLoading] = useState(false);
   // state for the input
   const [searchedCar1, setSearchedCar1] = useState({
     maker1: null,
@@ -67,9 +69,9 @@ function Main() {
   let pricesByMaker1ForGraphAxis = UseGetPricesByMakers(searchedResult.maker);
   let yearsByMaker1ForGraphAxis = UseGetYearsByMaker(searchedResult.maker);
   let resultImage = UseGetImagebyYearsAndColors(
-    searchedResult.model,
-    searchedResult.year,
-    searchedResult.color
+    searchedCar1.model1,
+    searchedCar1.year1,
+    searchedCar1.color1
   );
 
   //handler function to update the state of the searched car
@@ -85,41 +87,41 @@ function Main() {
 
   const handleSearch = async (e, page, selected) => {
     e.preventDefault();
+    setIsLoading(true);
     //function to fetch the data for the graph
     async function fetchGraphdata() {
       const baseURL = "https://compcar-api.onrender.com/api";
       try {
         const response = await axios.get(
-          `${baseURL}/car/graph/${searchedResult.maker}`
+          `${baseURL}/car/graph/${searchedCar1.maker1}`
         );
         const modelArr = response.data;
         setCarsByMaker1ForGraph(modelArr);
+
         //To find the price ranges of searched car
-        let filtereddModel = modelArr.find((car) => {
-          if (car.name.includes(searchedResult.model)) {
+        let filteredModel = modelArr.find((car) => {
+          if (car.name.includes(searchedCar1.model1)) {
             return car;
           }
           return;
         });
-        let priceArr = filtereddModel.data
+        let priceArr = filteredModel.data
           .map((data) => {
             return data.price;
           })
           .sort((a, b) => b - a);
 
-        let bestPrice = priceArr[Math.floor(priceArr.length / 2)];
-        let cheapestPrice = priceArr[priceArr.length - 1];
-        let mostExpensivePrice = priceArr[0];
-
-        setSearchedResult({
-          ...searchedResult,
+        setSearchedResult((prev) => ({
+          ...prev,
           price: {
-            best: bestPrice,
-            cheapest: cheapestPrice,
-            mostExpensive: mostExpensivePrice,
+            ...prev.price,
+            best: priceArr[Math.floor(priceArr.length / 2)],
+            cheapest: priceArr[priceArr.length - 1],
+            mostExpensive: priceArr[0],
           },
-        });
+        }));
         console.log("priceArr-====", priceArr);
+        console.log("searchedResult==", searchedResult);
       } catch (error) {
         console.log("error occured in CarInfoForGraph", error);
       }
@@ -127,15 +129,15 @@ function Main() {
     }
     //function to set the searched result to display
     function setSearchedCarResultToDisplay() {
-      setSearchedResult({
-        ...searchedResult,
+      setSearchedResult((prev) => ({
+        ...prev,
         maker: searchedCar1.maker1,
         model: searchedCar1.model1,
         year: searchedCar1.year1,
         color: searchedCar1.color1,
         mileage: searchedCar1.mileage1,
         url: resultImage[0],
-      });
+      }));
       return;
     }
 
@@ -170,7 +172,7 @@ function Main() {
 
     return alert("Please select all the options");
   };
-  console.log("searchedResult-====", searchedResult);
+  console.log("searchedResult====", searchedResult);
   return (
     <div className="main">
       <Routes>
