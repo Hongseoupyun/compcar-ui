@@ -16,8 +16,6 @@ export default function ResultPage(props) {
     searchedCar2,
     setSearchedCar2,
     carsByMaker1ForGraph,
-    pricesByMaker1ForGraphAxis,
-    yearsByMaker1ForGraphAxis,
     makers,
     modelsByMaker1,
     handleSelect,
@@ -116,7 +114,7 @@ export default function ResultPage(props) {
             <div className="searched--car--name">
               {`${
                 searchedResult.year
-              } ${searchedResult.maker?.toUpperCase()} ${searchedResult.model?.toUpperCase()} ${searchedResult.color?.toUpperCase()}`}
+              } ${searchedResult.maker?.toUpperCase()} ${searchedResult.model?.toUpperCase()} `}
             </div>
             <div className="searched--car--favourite">
               <FaBookmark id="bookmark" />
@@ -174,8 +172,7 @@ export default function ResultPage(props) {
       <section className="graph--section">
         <ResultPageGraphs
           carsByMaker1ForGraph={carsByMaker1ForGraph}
-          pricesByMaker1ForGraphAxis={pricesByMaker1ForGraphAxis}
-          yearsByMaker1ForGraphAxis={yearsByMaker1ForGraphAxis}
+          searchedResult={searchedResult}
         />
       </section>
     </div>

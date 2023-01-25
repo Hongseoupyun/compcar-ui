@@ -8,8 +8,6 @@ import UseGetMakers from "hooks/UseGetMakers";
 import UseGetModelsByMaker from "hooks/UseGetModelsByMaker";
 import UseGetYearsByModel from "hooks/UseGetYearsByModel";
 import UseGetColorsByModel from "hooks/UseGetColorsByModel";
-import UseGetPricesByMakers from "hooks/UseGetPricesByMakers";
-import UseGetYearsByMaker from "hooks/UseGetYearsByMaker";
 import UseGetImagebyYearsAndColors from "hooks/UseGetImagebyYearsAndColors";
 
 function Main() {
@@ -66,8 +64,6 @@ function Main() {
   );
 
   // function returns the data for the graph
-  let pricesByMaker1ForGraphAxis = UseGetPricesByMakers(searchedResult.maker);
-  let yearsByMaker1ForGraphAxis = UseGetYearsByMaker(searchedResult.maker);
   let resultImage = UseGetImagebyYearsAndColors(
     searchedCar1.model1,
     searchedCar1.year1,
@@ -203,8 +199,6 @@ function Main() {
               searchedCar2={searchedCar2}
               setSearchedCar2={setSearchedCar2}
               carsByMaker1ForGraph={carsByMaker1ForGraph}
-              pricesByMaker1ForGraphAxis={pricesByMaker1ForGraphAxis}
-              yearsByMaker1ForGraphAxis={yearsByMaker1ForGraphAxis}
               makers={makers}
               modelsByMaker1={modelsByMaker1}
               handleSelect={handleSelect}

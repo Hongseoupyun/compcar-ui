@@ -24,83 +24,140 @@ ChartJS.register(
 );
 
 function ResultPageGraphs(props) {
-  const {
-    carsByMaker1ForGraph,
-    pricesByMaker1ForGraphAxis,
-    yearsByMaker1ForGraphAxis,
-  } = props;
+  const { carsByMaker1ForGraph, searchedResult } = props;
 
   const data1ForGraph1 = {
-    labels: yearsByMaker1ForGraphAxis, //xaixs
     datasets: carsByMaker1ForGraph.map((car, index) => {
       return {
         label: car.name,
         data: car.data.map((el) => {
-          return { x: el.year, y: el.price };
-        }), //y axis or [{x:20,y:10}]
+          return {
+            x: el.year,
+            y: el.price,
+            name: car.name,
+            year: el.year,
+            price: el.price,
+          };
+        }),
+        pointRadius: car.name.includes(searchedResult.model) ? 6 : 3,
+        //radius of the point
         fill: false,
-        backgroundColor: `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(
-          Math.random() * 255
-        )}, ${Math.floor(Math.random() * 255)}, 1)`,
+        backgroundColor: car.name.includes(searchedResult.model)
+          ? `#fe7826`
+          : `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(
+              Math.random() * 100
+            )}, ${Math.floor(Math.random() * 100)}, 0.45)`,
+        hoverRadius: 10,
       };
     }),
   };
   const data1ForGraph2 = {
-    labels: ["0", "50000", "100000", "150000", "200000", "250000", "300000"], //xaixs
     datasets: carsByMaker1ForGraph.map((car, index) => {
       return {
         label: car.name,
         data: car.data.map((el) => {
-          return { x: el.mileage, y: el.price };
-        }), //y axis or [{x:20,y:10}]
+          return {
+            x: el.mileage,
+            y: el.price,
+            name: car.name,
+            mileage: el.mileage,
+            price: el.price,
+            year: el.year,
+          };
+        }),
+        pointRadius: car.name.includes(searchedResult.model) ? 6 : 3,
+        //radius of the point
         fill: false,
-        backgroundColor: `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(
-          Math.random() * 255
-        )}, ${Math.floor(Math.random() * 255)}, 1)`,
+        backgroundColor: car.name.includes(searchedResult.model)
+          ? `#fe7826`
+          : `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(
+              Math.random() * 255
+            )}, ${Math.floor(Math.random() * 255)}, 0.45)`,
+        // hoverBorderColor: "red",
+        // hoverBackgroundColor: "red",
+        hoverRadius: 10,
       };
     }),
   };
 
   const data2ForGraph1 = {};
   const data2ForGraph2 = {};
+  const title1 = "Price variation by year";
+  const title2 = "Price variation by mileage";
   const options1 = {
     responsive: true,
     plugins: {
+      tooltip: {
+        enabled: true,
+        position: "average",
+        backgroundColor: "#196e86",
+        bodyColor: "white",
+        padding: 10,
+        callbacks: {
+          label: (context) => {
+            return context.raw.year == searchedResult.year &&
+              context.raw.name.includes(searchedResult.model)
+              ? "*Your Search* " +
+                  context.raw.year +
+                  " " +
+                  context.raw.name +
+                  ": " +
+                  `(Price: $${context.raw.price})`
+              : context.raw.year +
+                  " " +
+                  context.raw.name +
+                  ": " +
+                  `(Price: $${context.raw.price})`;
+          },
+        },
+        bodyFont: {
+          size: 14,
+          weight: "bold",
+        },
+      },
       legend: {
-        position: "right",
+        position: "bottom",
       },
       title: {
         display: true,
-        text: "Price Variation by Year",
+        text: title1,
       },
       scales: {
-        y: {
-          min: pricesByMaker1ForGraphAxis[0],
-          max: pricesByMaker1ForGraphAxis[
-            pricesByMaker1ForGraphAxis.length - 1
-          ],
+        hover: {
+          mode: "dataset",
+          intersect: true,
         },
       },
     },
   };
 
   const options2 = {
-    responsive: true,
+    ...options1,
     plugins: {
-      legend: {
-        position: "right",
+      ...options1.plugins,
+      tooltip: {
+        ...options1.plugins.tooltip,
+        callbacks: {
+          label: (context) => {
+            return context.raw.year == searchedResult.year &&
+              context.raw.name.includes(searchedResult.model)
+              ? "*Your Search* " +
+                  context.raw.year +
+                  " " +
+                  context.raw.name +
+                  ": " +
+                  `(Mileage: ${context.raw.mileage}, Price: $${context.raw.price})`
+              : context.raw.year +
+                  " " +
+                  context.raw.name +
+                  ": " +
+                  `(Mileage: ${context.raw.mileage}, Price: $${context.raw.price})`;
+          },
+        },
       },
       title: {
-        display: true,
-        text: "Price Variation by Mileage",
-      },
-      scales: {
-        y: {
-          min: pricesByMaker1ForGraphAxis[0],
-          max: pricesByMaker1ForGraphAxis[
-            pricesByMaker1ForGraphAxis.length - 1
-          ],
-        },
+        ...options1.plugins.title,
+        text: title2,
       },
     },
   };
