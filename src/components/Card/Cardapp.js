@@ -1,34 +1,31 @@
-import "./CardApp.css";
-import Card from "./Card";
-import PopularCard from "./PopularCard";
-//import Button from './Button';
-//import data from "./data";
-import cityData from "./cityData";
-import { useState, useEffect } from "react";
+import './Cardapp.css';
+import Card from './Card';
+import PopularCard from './PopularCard';
+import cityData from './cityData';
+import { useState, useEffect } from 'react';
 
 function CardApp() {
-  const[recCard, setRecCard] = useState([]);
-  useEffect(()=>{
+  const [recCard, setRecCard] = useState([]);
+  useEffect(() => {
     fetch('http://localhost:8000/api/kijijiCar')
-    .then((response)=>response.json())
-    .then((data) => {
-      const newData = data.slice(1, 4);
-      setRecCard(newData);
-    })
-    .then((data)=>console.log(data));
+      .then((response) => response.json())
+      .then((data) => {
+        const newData = data.slice(1, 4);
+        setRecCard(newData);
+      })
+      .then((data) => console.log(data));
   }, []);
 
   return (
-    <div className="CardApp">
+    <div className="CardApp" id="CardApp">
       <div className="title">
         <h2 className="sub-title">The best deals</h2>
         <div className="sub-explain">
-          Buy the car with the best deal we've found this week.{" "}
+          Buy the car with the best deal we've found this week.{' '}
         </div>
         <div className="more-option">see more deals</div>
       </div>
       <div className="deal">
-
         {recCard.map((recData) => (
           <Card
             url={recData.url}

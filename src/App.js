@@ -1,15 +1,20 @@
-import './App.css';
-import ContactUs from './components/ContactUs/ContactUs';
-import Navbar from './components/Navbar/Navbar';
-import Cardapp from './components/Card/CardApp';
+import "./App.css";
+import { Fragment } from "react";
+import { BrowserRouter } from "react-router-dom";
+import Main from "./components/Main/Main";
+import Navbar from "./components/Navbar/Navbar";
 
 function App() {
   return (
-    <div className="App">
-      <Navbar/>
-      <Cardapp/>
-      <ContactUs/>
-    </div>
+    <Fragment>
+      <div className="App">
+      <BrowserRouter>
+        <Navbar />
+        <Main />
+        </BrowserRouter>
+      </div>
+    </Fragment>
+    
   );
 }
 

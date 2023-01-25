@@ -2,16 +2,21 @@
   height: 10vh;
   display: flex;
   justify-content: space-between;
-  background-color: #1A122B;
-
+  background-color: #1a122b;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  transition: all 300ms ease-in-out;
 }
-.img-wrapper{
+.img-wrapper {
   display: flex;
   align-items: center;
 }
-.logo {
-  height: 80px;
-  width: 80px;
+.titleLogo {
+  height: 50px;
+  margin-left: 20px;
 }
 
 .content-wrapper {
@@ -19,20 +24,36 @@
   justify-content: space-around;
   width: 35%;
   align-items: center;
-  color: #FFFFFF;
+  color: #ffffff;
 
   div {
     cursor: pointer;
   }
 }
 
+.find-a-car {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.deals {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.contact {
+  text-decoration: none;
+  color: #ffffff;
+}
 
 .sign-in {
   height: 36px;
   width: 83px;
-  background-color: #313EF7;
+  background-color: #313ef7;
   border: none;
   border-radius: 36px;
-  color: #FFFFFF;
+  color: #ffffff;
   cursor: pointer;
+  text-decoration: none;
+  line-height: 2em;
 }
