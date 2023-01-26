@@ -1,26 +1,56 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Navbar.scss";
+
 export default function Navbar() {
   return (
     <div className="navbar-container" data-testid="navbar-div">
-      <a href="/">
-        <div className="img-wrapper">
-          <img className="logo" src={require("assets/logo.png")} alt="logo" />
-        </div>
-      </a>
+      <div className="img-wrapper">
+        <Link to="/">
+          <img
+            className="titleLogo"
+            src={require("assets/logo.png")}
+            alt="logo"
+          />
+        </Link>
+      </div>
       <div className="content-wrapper">
-        <div className="find-a-car" data-testid="content">
-          Find a car
+        <div data-testid="content">
+          <Link
+            className="find-a-car"
+            to="/SearchPage"
+            spy={true}
+            offset={50}
+            duration={500}
+          >
+            Find a car
+          </Link>
         </div>
-        <div className="deals" data-testid="content">
-          Deals
+        <div data-testid="content">
+          <Link
+            className="deals"
+            to="/CardApp"
+            spy={true}
+            offset={50}
+            duration={500}
+          >
+            Deals
+          </Link>
         </div>
-        <div className="contact" data-testid="content">
-          Contact
+        <div data-testid="content">
+          <Link
+            className="contact"
+            to="/ContactUs"
+            spy={true}
+            offset={50}
+            duration={500}
+          >
+            Contact
+          </Link>
         </div>
-        <button className="sign-in" data-testid="content">
+        <Link className="sign-in" data-testid="content" to="/SignIn">
           Sign in
-        </button>
+        </Link>
       </div>
     </div>
   );

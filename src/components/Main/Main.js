@@ -4,6 +4,8 @@ import axios from "axios";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import LandingPage from "components/Main/LandingPage";
 import ResultPage from "components/ResultPage/ResultPage";
+import SignIn from "components/Login/SignIn";
+import SignUp from "components/Login/SignUp";
 import UseGetMakers from "hooks/UseGetMakers";
 import UseGetModelsByMaker from "hooks/UseGetModelsByMaker";
 import UseGetYearsByModel from "hooks/UseGetYearsByModel";
@@ -209,6 +211,8 @@ function Main() {
             />
           }
         />
+        <Route path="/SignIn" element={<SignIn />} />
+        <Route path="/SignUp" element={<SignUp />} />
       </Routes>
     </div>
   );

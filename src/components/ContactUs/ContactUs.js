@@ -4,7 +4,7 @@ import "./ContactUs.scss";
 export default function ContactUs() {
   return (
     <>
-      <div className="contact-us" data-testid="contact-us-page">
+      <div className="contact-us" data-testid="contact-us-page" id="ContactUs">
         <div className="meet-our-team">MEET OUR TEAM</div>
         <div className="members-img-container" data-testid="img-container">
           <div className="members-img-wrapper">

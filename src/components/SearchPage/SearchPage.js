@@ -28,8 +28,10 @@ export default function SearchPage(props) {
   return (
     <section
       className="section--search"
+      id="SearchPage"
       style={{
-        backgroundImage: `url(${require("assets/searchBackground.jpeg")})`,
+        backgroundImage: `url(${require('assets/searchBackground.jpeg')})`,
+        'background-size': 'cover',
       }}
     >
       <h1>FIND YOUR DREAM CAR</h1>
