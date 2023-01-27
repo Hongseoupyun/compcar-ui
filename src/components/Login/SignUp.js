@@ -62,6 +62,7 @@ function SignUp() {
       console.log(response);
       if (response.status === 200) {
         navigate("/SignIn");
+        alert("Successfully signed up!, Please log in.");
       }
     } catch (error) {
       console.log("error occured in registerUser", error);
