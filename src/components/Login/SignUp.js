@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './SignUp.css';
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import "./SignUp.css";
 
 function SignUp() {
   const navigate = useNavigate();
   const go = () => {
-    navigate('/SignIn');
+    navigate("/SignIn");
   };
 
-  const [email, setEmail] = useState('');
-  const [pw, setPw] = useState('');
-  const [name, setName] = useState('');
-  const [rePw, setRePw] = useState('');
+  const [email, setEmail] = useState("");
+  const [pw, setPw] = useState("");
+  const [rePw, setRePw] = useState("");
 
   const [emailValid, setEmailValid] = useState(false);
   const [pwValid, setPwValid] = useState(false);
@@ -29,10 +29,6 @@ function SignUp() {
     }
   };
 
-  const checkName = (e) => {
-    setName(e.target.value);
-  };
-
   const checkPw = (e) => {
     setPw(e.target.value);
     const regex =
@@ -48,11 +44,29 @@ function SignUp() {
     setRePw(e.target.value);
     const regex =
       /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+])(?!.*[^a-zA-z0-9$`~!@$!%*#^?&\\(\\)\-_=+]).{8,20}$/;
-    if (regex.test(pw)) {
+    if (regex.test(rePw)) {
       setRePwValid(true);
     } else {
       setRePwValid(false);
     }
+  };
+
+  const registerUser = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post(
+        "https://compcar-api.onrender.com/api/user/register",
+        { email: email, password: pw }
+      );
+      console.log(response);
+      if (response.status === 200) {
+        navigate("/SignIn");
+      }
+    } catch (error) {
+      console.log("error occured in registerUser", error);
+    }
+    setEmail("");
   };
 
   useEffect(() => {
@@ -61,7 +75,7 @@ function SignUp() {
       return;
     }
     setNotAllow(true);
-  }, [emailValid, pwValid]);
+  }, [emailValid, pwValid, rePwValid]);
 
   return (
     <div className="signUp">
@@ -70,11 +84,10 @@ function SignUp() {
         <div className="logo">
           <img
             className="logoImg"
-            src={require('assets/logo.png')}
+            src={require("assets/logo.png")}
             alt="logo"
           />
         </div>
-
         <div className="loginCard">
           <div className="btn1">
             <p className="up">Sign Up</p>
@@ -96,15 +109,6 @@ function SignUp() {
               {!emailValid && email.length > 0 && (
                 <div>Please enter correct email.</div>
               )}
-            </div>
-            <div className="inputWrap">
-              <input
-                type="text"
-                className="input"
-                placeholder="Full Name(First Name and Last Name)"
-                value={name}
-                onChange={checkName}
-              />
             </div>
             <div className="inputWrap">
               <input
@@ -132,11 +136,11 @@ function SignUp() {
 
             <div>
               <button
-                onClick="onClickConfirmBtn"
+                onClick={(e) => registerUser(e)}
                 disabled={notAllow}
                 className="button"
               >
-                {' '}
+                {" "}
                 Create an Account
               </button>
             </div>

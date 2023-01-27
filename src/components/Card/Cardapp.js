@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react';
 function CardApp() {
   const [recCard, setRecCard] = useState([]);
   useEffect(() => {
-    fetch('http://localhost:8000/api/kijijiCar')
+    fetch('https://compcar-api.onrender.com/api/kijijiCar')
       .then((response) => response.json())
       .then((data) => {
         const newData = data.slice(1, 4);
