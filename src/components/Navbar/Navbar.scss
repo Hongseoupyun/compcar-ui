@@ -4,6 +4,14 @@
   justify-content: space-between;
   background-color: #1a122b;
   position: fixed;
+  z-index: 9;
+  width: 100vw;
+  a {
+    text-decoration: none;
+    display: flex;
+  }
+  background-color: #1a122b;
+  position: fixed;
   width: 100%;
   top: 0;
   left: 0;
@@ -13,6 +21,7 @@
 .img-wrapper {
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 .titleLogo {
   height: 50px;

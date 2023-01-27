@@ -1,0 +1,81 @@
+.overlay {
+  div{
+    margin-bottom: 1rem;
+  }
+  button {
+    cursor: pointer;
+  }
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  z-index: 4;
+  .modal--container {
+    color: black;
+    width: 30rem;
+    height: 13rem;
+    border-radius: 16px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 5;
+    padding: 25px;
+    .modal--header {
+      display: flex;
+      font-weight: bold;
+      justify-content: space-between;
+      width: 100%;
+      font-size: 1.3rem;
+      .modal--header--close {
+        cursor: pointer;
+      }
+    }
+    .modal--button--wrapper {
+      margin-bottom: 0px;
+      margin-top: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+    .modal--button {
+      border-radius: 8px;
+      width: 160.5px;
+      height: 42px;
+      font-weight: 600;
+      &.--select {
+        background-color: #2b4bf2;
+        color: white;
+        border: none;
+      }
+      &.--cancel {
+        background-color: white;
+        color: #808080;
+        border: 1px solid #D6DAE2;
+      }
+    }
+    .modal--title {
+      color: #2b4bf2;
+      font-weight: 600;
+      font-size: 0.8rem;
+      display: flex;
+    }
+    .modal--input {
+      width: 100%;
+      .modal--input--select {
+        width: 100%;
+        height: 2rem;
+        border-radius: 8px;
+        border: 1px #D6DAE2 solid;
+        background-color: white;
+        color: black;
+        font-size: 0.8rem;
+        font-weight: 400;
+        padding-left: 0.5rem;
+      }
+    }
+  }
+}

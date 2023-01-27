@@ -8,13 +8,12 @@ function App() {
   return (
     <Fragment>
       <div className="App">
-      <BrowserRouter>
-        <Navbar />
-        <Main />
+        <BrowserRouter>
+          <Navbar />
+          <Main />
         </BrowserRouter>
       </div>
     </Fragment>
-    
   );
 }
 

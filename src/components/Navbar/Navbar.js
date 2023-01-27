@@ -16,17 +16,35 @@ export default function Navbar() {
       </div>
       <div className="content-wrapper">
         <div data-testid="content">
-          <Link className="find-a-car" to="/SearchPage" spy={true} offset={50} duration={500}>
+          <Link
+            className="find-a-car"
+            to="/SearchPage"
+            spy={true}
+            offset={50}
+            duration={500}
+          >
             Find a car
           </Link>
         </div>
         <div data-testid="content">
-          <Link className="deals" to="/CardApp" spy={true} offset={50} duration={500}>
+          <Link
+            className="deals"
+            to="/CardApp"
+            spy={true}
+            offset={50}
+            duration={500}
+          >
             Deals
           </Link>
         </div>
         <div data-testid="content">
-          <Link className="contact" to="/ContactUs" spy={true} offset={50} duration={500}>
+          <Link
+            className="contact"
+            to="/ContactUs"
+            spy={true}
+            offset={50}
+            duration={500}
+          >
             Contact
           </Link>
         </div>
