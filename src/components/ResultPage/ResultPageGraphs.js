@@ -24,10 +24,10 @@ ChartJS.register(
 );
 
 function ResultPageGraphs(props) {
-  const { carsByMaker1ForGraph, searchedResult } = props;
+  const { carsByMaker1ForGraph, searchedResult, carsToCompareForGraph } = props;
 
   const data1ForGraph1 = {
-    datasets: carsByMaker1ForGraph.map((car, index) => {
+    datasets: carsByMaker1ForGraph.map((car) => {
       return {
         label: car.name,
         data: car.data.map((el) => {
@@ -52,7 +52,7 @@ function ResultPageGraphs(props) {
     }),
   };
   const data1ForGraph2 = {
-    datasets: carsByMaker1ForGraph.map((car, index) => {
+    datasets: carsByMaker1ForGraph.map((car) => {
       return {
         label: car.name,
         data: car.data.map((el) => {
@@ -73,15 +73,43 @@ function ResultPageGraphs(props) {
           : `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(
               Math.random() * 255
             )}, ${Math.floor(Math.random() * 255)}, 0.45)`,
-        // hoverBorderColor: "red",
-        // hoverBackgroundColor: "red",
         hoverRadius: 10,
       };
     }),
   };
 
-  const data2ForGraph1 = {};
-  const data2ForGraph2 = {};
+  const data2ForGraph1 = {
+    datasets: carsToCompareForGraph.map((car) => {
+      return {
+        label: car.name,
+        data: car.data.map((el) => {
+          return {
+            x: el.year,
+            y: el.price,
+            name: car.name,
+            year: el.year,
+            price: el.price,
+          };
+        }),
+      };
+    }),
+  };
+  const data2ForGraph2 = {
+    datasets: carsToCompareForGraph.map((car) => {
+      return {
+        label: car.name,
+        data: car.data.map((el) => {
+          return {
+            x: el.mileage,
+            y: el.price,
+            name: car.name,
+            year: el.year,
+            price: el.price,
+          };
+        }),
+      };
+    }),
+  };
   const title1 = "Price variation by year";
   const title2 = "Price variation by mileage";
   const options1 = {
@@ -161,14 +189,27 @@ function ResultPageGraphs(props) {
       },
     },
   };
+  console.log("carsToCompareForGraph in graph page",carsToCompareForGraph)
 
   return (
     <div className="graphs">
       <div className="graphs--wrapper">
-        <Scatter className="--1" data={data1ForGraph1} options={options1} />
+        <Scatter
+          className="--1"
+          data={
+            carsToCompareForGraph?.length > 0 ? data2ForGraph1 : data1ForGraph1
+          }
+          options={options1}
+        />
       </div>
       <div className="graphs--wrapper">
-        <Scatter className="--2" data={data1ForGraph2} options={options2} />
+        <Scatter
+          className="--2"
+          data={
+            carsToCompareForGraph?.length > 0 ? data2ForGraph2 : data1ForGraph2
+          }
+          options={options2}
+        />
       </div>
     </div>
   );

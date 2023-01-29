@@ -19,6 +19,7 @@ export default function SearchPage(props) {
     yearsByModels2,
     colorsByModels2,
     handleSearch,
+    handleSearchToCompare
   } = props;
 
   const handleSelected = (searchOption) => {
@@ -30,8 +31,8 @@ export default function SearchPage(props) {
       className="section--search"
       id="SearchPage"
       style={{
-        backgroundImage: `url(${require('assets/searchBackground.jpeg')})`,
-        'background-size': 'cover',
+        backgroundImage: `url(${require("assets/searchBackground.jpeg")})`,
+        "background-size": "cover",
       }}
     >
       <h1>FIND YOUR DREAM CAR</h1>
@@ -75,9 +76,13 @@ export default function SearchPage(props) {
           <button
             className="button--search"
             type="submit"
-            onClick={(e) => {
-              handleSearch(e, "search", "normal");
-            }}
+            onClick={
+              selected === "normal"
+                ? (e) => {
+                    handleSearch(e, "search");
+                  }
+                : (e) => handleSearchToCompare(e)
+            }
           >
             <FaSearch id="emoji" />
           </button>

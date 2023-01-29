@@ -23,6 +23,8 @@ export default function ResultPage(props) {
     yearsByModels1,
     colorsByModels1,
     searchedResult,
+    carsToCompareForGraph,
+    setCarsToCompareForGraph,
   } = props;
   const [isComparePopUpOpen, setIsComparePopUpOpen] = useState(false);
   const navigate = useNavigate();
@@ -173,6 +175,8 @@ export default function ResultPage(props) {
         <ResultPageGraphs
           carsByMaker1ForGraph={carsByMaker1ForGraph}
           searchedResult={searchedResult}
+          carsToCompareForGraph={carsToCompareForGraph}
+          
         />
       </section>
     </div>

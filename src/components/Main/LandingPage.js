@@ -6,7 +6,7 @@ import Cardapp from "components/Card/Cardapp";
 function LandingPage(props) {
   const {searchedCar1, setSearchedCar1, searchedCar2, setSearchedCar2, makers,
   modelsByMaker1, yearsByModels1, colorsByModels1, handleSelect,
-  modelsByMaker2, yearsByModels2, colorsByModels2,handleSearch
+  modelsByMaker2, yearsByModels2, colorsByModels2,handleSearch,handleSearchToCompare
   } = props;
   return (
     <div className="landingPage">
@@ -24,7 +24,7 @@ function LandingPage(props) {
       colorsByModels2 = {colorsByModels2}
       makers = {makers}
       handleSearch = {handleSearch}
-
+      handleSearchToCompare={handleSearchToCompare}
       />
       <Cardapp />
       <ContactUs />
