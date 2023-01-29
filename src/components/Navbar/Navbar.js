@@ -18,7 +18,7 @@ export default function Navbar() {
         <div data-testid="content">
           <Link
             className="find-a-car"
-            to="/SearchPage"
+            to="/"
             spy={true}
             offset={50}
             duration={500}
