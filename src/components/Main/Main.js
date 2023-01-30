@@ -34,6 +34,7 @@ function Main() {
 
   //state for graph data
   const [carsByMaker1ForGraph, setCarsByMaker1ForGraph] = useState([]);
+  const [carsToCompareForGraph, setCarsToCompareForGraph] = useState([]);
 
   //state for searched result
   const [searchedResult, setSearchedResult] = useState({
@@ -48,6 +49,10 @@ function Main() {
       cheapest: null,
       mostExpensive: null,
     },
+    maker2: null,
+    model2: null,
+    year2: null,
+    color2: null,
   });
 
   //function returns the options for the select options
@@ -83,7 +88,7 @@ function Main() {
     }
   };
 
-  const handleSearch = async (e, page, selected) => {
+  const handleSearch = async (e, page) => {
     e.preventDefault();
     setIsLoading(true);
     //function to fetch the data for the graph
@@ -118,8 +123,6 @@ function Main() {
             mostExpensive: priceArr[0],
           },
         }));
-        console.log("priceArr-====", priceArr);
-        console.log("searchedResult==", searchedResult);
       } catch (error) {
         console.log("error occured in CarInfoForGraph", error);
       }
@@ -141,7 +144,6 @@ function Main() {
 
     if (
       page === "graph" &&
-      selected === null &&
       Object.values(searchedCar1).every((value) => value !== null)
     ) {
       return fetchGraphdata().then(() => {
@@ -150,7 +152,6 @@ function Main() {
     }
     if (
       page === "search" &&
-      selected === "normal" &&
       Object.values(searchedCar1).every((value) => value !== null)
     ) {
       return fetchGraphdata()
@@ -159,16 +160,88 @@ function Main() {
         })
         .then(() => navigate("/result"));
     }
+    return alert("Please select all the options");
+  };
+
+  const handleSearchToCompare = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    //function to fetch the data for the graph to compare
+    async function fetchGraphdataToCompare() {
+      const baseURL = "https://compcar-api.onrender.com/api";
+      try {
+        const response1 = await axios.get(
+          `${baseURL}/car/graph/${searchedCar1.maker1}`
+        );
+        const response2 = await axios.get(
+          `${baseURL}/car/graph/${searchedCar2.maker2}`
+        );
+        const modelArr1 = response1.data;
+        const modelArr2 = response2.data;
+
+        const filteredModel1 = modelArr1.find((car) => {
+          if (car.name.includes(searchedCar1.model1)) {
+            return car;
+          }
+          return;
+        });
+
+        const filteredModel2 = modelArr2.find((car) => {
+          if (car.name.includes(searchedCar2.model2)) {
+            return car;
+          }
+          return;
+        });
+
+        setCarsToCompareForGraph([filteredModel1, filteredModel2]);
+
+        let priceArr = filteredModel1.data
+          .map((data) => {
+            return data.price;
+          })
+          .sort((a, b) => b - a);
+        setSearchedResult((prev) => ({
+          ...prev,
+          price: {
+            ...prev.price,
+            best: priceArr[Math.floor(priceArr.length / 2)],
+            cheapest: priceArr[priceArr.length - 1],
+            mostExpensive: priceArr[0],
+          },
+        }));
+      } catch (error) {
+        console.log("error occured in CarInfoForGraph", error);
+      }
+      return;
+    }
+
     if (
-      page === "search" &&
-      selected === "compare" &&
       Object.values(searchedCar1).every((value) => value !== null) &&
       Object.values(searchedCar2).every((value) => value !== null)
     ) {
-      return navigate("/result");
+      return fetchGraphdataToCompare()
+        .then(() => {
+          setSearchedResult((prev) => ({
+            ...prev,
+            maker: searchedCar1.maker1,
+            model: searchedCar1.model1,
+            year: searchedCar1.year1,
+            color: searchedCar1.color1,
+            mileage: searchedCar1.mileage1,
+            url: resultImage[0],
+            maker2: searchedCar2.maker2,
+            model2: searchedCar2.model2,
+            year2: searchedCar2.year2,
+            color2: searchedCar2.color2,
+          }));
+        })
+        .then(() => {
+          navigate("/result");
+        });
     }
-
-    return alert("Please select all the options");
+    alert("Please select all the options");
+    console.log("carsToCompareForGraph===", carsToCompareForGraph);
   };
   console.log("searchedResult====", searchedResult);
   return (
@@ -189,6 +262,7 @@ function Main() {
               colorsByModels2={colorsByModels2}
               handleSelect={handleSelect}
               handleSearch={handleSearch}
+              handleSearchToCompare={handleSearchToCompare}
             />
           }
         />
@@ -208,6 +282,9 @@ function Main() {
               yearsByModels1={yearsByModels1}
               colorsByModels1={colorsByModels1}
               searchedResult={searchedResult}
+              setCarsToCompareForGraph={setCarsToCompareForGraph}
+              carsToCompareForGraph={carsToCompareForGraph}
+              handleSearchToCompare={handleSearchToCompare}
             />
           }
         />
