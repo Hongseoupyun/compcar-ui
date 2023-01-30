@@ -172,10 +172,10 @@ function Main() {
       const baseURL = "https://compcar-api.onrender.com/api";
       try {
         const response1 = await axios.get(
-          `${baseURL}/car/graph/${searchedCar2.maker2}`
+          `${baseURL}/car/graph/${searchedCar1.maker1}`
         );
         const response2 = await axios.get(
-          `${baseURL}/car/graph/${searchedCar1.maker1}`
+          `${baseURL}/car/graph/${searchedCar2.maker2}`
         );
         const modelArr1 = response1.data;
         const modelArr2 = response2.data;
@@ -194,7 +194,7 @@ function Main() {
           return;
         });
 
-        // setCarsToCompareForGraph([filteredModel1, filteredModel2]);
+        setCarsToCompareForGraph([filteredModel1, filteredModel2]);
 
         let priceArr = filteredModel1.data
           .map((data) => {
