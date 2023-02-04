@@ -14,8 +14,9 @@ import UseGetImagebyYearsAndColors from "hooks/UseGetImagebyYearsAndColors";
 
 function Main() {
   const navigate = useNavigate();
-  //
+  // general state for the app
   const [isLoading, setIsLoading] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   // state for the input
   const [searchedCar1, setSearchedCar1] = useState({
     maker1: null,
