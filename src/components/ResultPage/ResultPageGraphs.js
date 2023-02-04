@@ -82,15 +82,21 @@ function ResultPageGraphs(props) {
     datasets: carsToCompareForGraph.map((car) => {
       return {
         label: car.name,
-        data: car.data.map((el) => {
+        data: car.data.map((el, index) => {
           return {
             x: el.year,
             y: el.price,
             name: car.name,
             year: el.year,
             price: el.price,
+            index: index,
           };
         }),
+        pointRadius: 6,
+        hoverRadius: 10,
+        backgroundColor: car.name.includes(searchedResult.model)
+          ? `#fe7826`
+          : "#313ef7",
       };
     }),
   };
@@ -98,15 +104,22 @@ function ResultPageGraphs(props) {
     datasets: carsToCompareForGraph.map((car) => {
       return {
         label: car.name,
-        data: car.data.map((el) => {
+        data: car.data.map((el, index) => {
           return {
             x: el.mileage,
             y: el.price,
             name: car.name,
             year: el.year,
             price: el.price,
+            index: index,
+            mileage: el.mileage,
           };
         }),
+        pointRadius: 6,
+        hoverRadius: 10,
+        backgroundColor: car.name.includes(searchedResult.model)
+          ? `#fe7826`
+          : "#313ef7",
       };
     }),
   };
@@ -189,7 +202,8 @@ function ResultPageGraphs(props) {
       },
     },
   };
-  console.log("carsToCompareForGraph in graph page",carsToCompareForGraph)
+
+  console.log("carsToCompareForGraph in graph page", carsToCompareForGraph);
 
   return (
     <div className="graphs">
