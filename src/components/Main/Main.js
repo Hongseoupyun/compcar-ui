@@ -36,6 +36,7 @@ function Main() {
   //state for graph data
   const [carsByMaker1ForGraph, setCarsByMaker1ForGraph] = useState([]);
   const [carsToCompareForGraph, setCarsToCompareForGraph] = useState([]);
+  const [favouriteCars, setFavouriteCars] = useState([]);
 
   //state for searched result
   const [searchedResult, setSearchedResult] = useState({
@@ -286,6 +287,8 @@ function Main() {
               setCarsToCompareForGraph={setCarsToCompareForGraph}
               carsToCompareForGraph={carsToCompareForGraph}
               handleSearchToCompare={handleSearchToCompare}
+              favouriteCars={favouriteCars}
+              setFavouriteCars={setFavouriteCars}
             />
           }
         />

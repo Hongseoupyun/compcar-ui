@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import "./SignIn.css";
 import axios from "axios";
 
+axios.defaults.withCredentials = true;
+
 function SignIn() {
   const navigate = useNavigate();
   const go = () => {
@@ -46,9 +48,11 @@ function SignIn() {
           password: pw,
         }
       );
-      console.log(response.headers);
+      const { accessToken } = response.data;
+      axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
       if (response.status === 200) {
         navigate("/");
+        console.log("response from signin", response);
       }
     } catch (error) {
       console.log(error);

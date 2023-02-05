@@ -25,6 +25,8 @@ export default function ResultPage(props) {
     searchedResult,
     carsToCompareForGraph,
     setCarsToCompareForGraph,
+    favoriteCars,
+    setFavoriteCars,
   } = props;
   const [isComparePopUpOpen, setIsComparePopUpOpen] = useState(false);
   const navigate = useNavigate();
@@ -45,6 +47,21 @@ export default function ResultPage(props) {
       mileage2: null,
     });
     navigate("/");
+  };
+  const handleAddToFavorite = (e) => {
+    e.preventDefault();
+    setFavoriteCars([
+      ...favoriteCars,
+      {
+        maker: searchedCar1.maker1,
+        model: searchedCar1.model1,
+        madeYear: searchedCar1.year1,
+        color: searchedCar1.color1,
+        mileage: searchedCar1.mileage1,
+        price: 0,
+      },
+    ]);
+    console.log("favoriteCars===", favoriteCars);
   };
 
   return (
@@ -118,7 +135,10 @@ export default function ResultPage(props) {
                 searchedResult.year
               } ${searchedResult.maker?.toUpperCase()} ${searchedResult.model?.toUpperCase()} `}
             </div>
-            <div className="searched--car--favourite">
+            <div
+              className="searched--car--favourite"
+              onClick={(e) => handleAddToFavorite(e)}
+            >
               <FaBookmark id="bookmark" />
             </div>
           </div>
@@ -176,7 +196,6 @@ export default function ResultPage(props) {
           carsByMaker1ForGraph={carsByMaker1ForGraph}
           searchedResult={searchedResult}
           carsToCompareForGraph={carsToCompareForGraph}
-          
         />
       </section>
     </div>
