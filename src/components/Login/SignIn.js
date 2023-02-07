@@ -48,7 +48,7 @@ function SignIn() {
       );
       if (response.status === 200) {
         navigate("/");
-        console.log(response.data)
+        console.log(response.data);
       }
     } catch (error) {
       console.log(error);
