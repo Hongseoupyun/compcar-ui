@@ -46,9 +46,9 @@ function SignIn() {
           password: pw,
         }
       );
-      console.log(response.headers);
       if (response.status === 200) {
         navigate("/");
+        console.log(response.data)
       }
     } catch (error) {
       console.log(error);
